@@ -143,8 +143,7 @@ public class SnapshotDB {
 	}
 	// REV
 	public void reverseValues(Command cmd){
-		Collections.reverse(getEntry(cmd.key).getValues());
-		System.out.println("ok\n");
+		getEntry(cmd.key).reverseValues();
 	}
 	// UNIQ
 	public void removeRepeats(Command cmd){
