@@ -1,16 +1,10 @@
 import java.util.*;
-/**
- * 
- * @author s400
- * V1: haven't implement snapshot functions
- * 	   Exception handling is undergoing.
- */
-
 
 public class SnapshotDB {
 
 	List<Entry> entryList = new LinkedList<Entry>();
-	List<Command> history = new ArrayList<Command>();
+	List<List<Entry>> snapshots = new ArrayList<List<Entry>>();
+	int numBackups = 0;
 
 	final String[] cmdStr = { "HELP", "BYE", "LIST KEYS", "LIST ENTRIES", "LIST SNAPSHOTS", "GET", "DEL",
 			"PURGE", "SET", "PUSH", "APPEND", "PICK", "PLUCK", "POP", "DROP", "ROLLBACK", "CHECKOUT",
@@ -61,7 +55,7 @@ public class SnapshotDB {
 				System.out.print(o);
 			else
 				System.out.print(o + " ");
-		System.out.println("]\n");
+		System.out.println("]");
 	}
 	
 	/******FUNCTION METHODS******/
@@ -75,19 +69,24 @@ public class SnapshotDB {
 			System.out.println(e.getKey());
 	}
 	// LIST ENTRIES
-	public void printEntries(){
-		if(entryList.isEmpty()){
+	public void printEntries(List<Entry> entlst){
+		if(entlst.isEmpty()){
 			System.out.println("No entries");
 			return;
 		}
-		for(Entry e : entryList){
+		for(Entry e : entlst){
 			System.out.print(e.getKey() + " ");
 			printValues(e);
 		}
+		System.out.println();
 	}
 	// LIST SNAPSHOTS
 	public void printSnapshots(){
-		// TODO
+		for(int i = 1; i <= numBackups; ++i){
+			System.out.println("Snapshot: " + i);
+			printEntries(snapshots.get(i - 1));
+			System.out.println();
+		}
 	}
 	// GET
 	public void showEntry(Command cmd){
@@ -99,7 +98,15 @@ public class SnapshotDB {
 	}
 	// PURGE
 	public void clearData(Command cmd){
-		// TODO
+		deleteEntry(cmd);
+		Entry ent = getEntry(cmd.key);
+		// Maybe assign each entry with an ID will improve performance
+		for(List<Entry> snapshot: snapshots){
+			for(Entry e: snapshot){
+				if(e.getKey().equals(ent.getKey()));
+					snapshot.remove(e);
+			}
+		}
 	}
 	// SET
 	public void setEntry(Command cmd){
@@ -129,21 +136,27 @@ public class SnapshotDB {
 		Entry ent = getEntry(cmd.key);
 		System.out.println(ent.getValues().remove(cmd.index) + "\n");	
 	}
-	
-	public void deleteSnapshot(Command cmd){
-		// TODO
+	// DROP
+	public void deleteSnapshot(Command cmd) throws InvalidArgumentException{
+		if(cmd.id > numBackups)
+			throw new InvalidArgumentException("index out of range");
+		snapshots.remove(cmd.id - 1);
+		--numBackups;
+		System.out.println("ok\n");
 	}
 	// POP
-	public void removeFrontValue(Command cmd) throws EmptyEntryException{
+	public void removeFrontValue(Command cmd) throws InvalidArgumentException{
 		getEntry(cmd.key).getValues().remove(0);
+		System.out.println("ok\n");
 	}
 	// LEN
 	public void showLength(Command cmd){
-		System.out.println(getEntry(cmd.key).getValues().size());
+		System.out.println(getEntry(cmd.key).getValues().size() + "\n");
 	}
 	// REV
 	public void reverseValues(Command cmd){
 		getEntry(cmd.key).reverseValues();
+		System.out.println("ok\n");
 	}
 	// UNIQ
 	public void removeRepeats(Command cmd){
@@ -153,26 +166,42 @@ public class SnapshotDB {
 		System.out.println("ok\n");
 	}
 	// SNAPSHOT
-	public void save(Command cmd){
-		
+	public void save(){
+		++numBackups;
+		List<Entry> copy = new LinkedList<Entry>(entryList);
+		snapshots.add(copy);
+		System.out.println("saved as snapshot " + numBackups + "\n");
 	}
 	//CHECKOUT
-	public void restoreData(Command cmd){
+	public void restoreData(Command cmd) throws InvalidArgumentException{
+		if(cmd.id > numBackups)
+			throw new InvalidArgumentException("no such snapshot id");
 		
+		entryList.clear();
+		for(Entry e : snapshots.get(cmd.id - 1)){
+			entryList.add(e);
+		}
+		System.out.println("ok\n");
 	}
 	// ROLLBACK
-	public void undoSnapshot(Command cmd){
-		
+	public void undoSnapshot(Command cmd) throws InvalidArgumentException{
+		try{
+			// Only remove the newer snapshots if there are some
+			if(cmd.id != numBackups)
+				snapshots.removeAll(snapshots.subList(cmd.id, numBackups - 1));
+			restoreData(cmd);
+		} catch (Exception e){
+			throw new InvalidArgumentException("index out of range");
+		}
 	}
-	
-	
+
 	/** METHOD FIELDS */
 	public void execute(Command cmd) {
 		try{
 			switch(cmd.instr){
-			case "LIST_KEYS": printKeys(); break;
-			case "LIST_ENTRIES": printEntries(); break;
-			case "LIST_SNAPSHOTS": printSnapshots();  break;
+			case "LIST KEYS": printKeys(); break;
+			case "LIST ENTRIES": printEntries(entryList); break;
+			case "LIST SNAPSHOTS": printSnapshots();  break;
 			case "GET": showEntry(cmd); break;
 			case "DEL": deleteEntry(cmd); break;
 			case "PURGE": clearData(cmd); break;
@@ -185,7 +214,7 @@ public class SnapshotDB {
 			case "DROP": deleteSnapshot(cmd); break;
 			case "ROLLBACK": undoSnapshot(cmd); break;
 			case "CHECKOUT": restoreData(cmd); break;
-			case "SNAPSHOT": save(cmd); break;
+			case "SNAPSHOT": save(); break;
 			case "LEN": showLength(cmd); break;
 			case "REV": reverseValues(cmd); break;
 			case "UNIQ": removeRepeats(cmd); break;
@@ -194,8 +223,8 @@ public class SnapshotDB {
 			}		
 		} catch (NullPointerException e){
 			System.out.println("no such key\n");
-		} catch (EmptyEntryException e){
-			System.out.println("entry is empty\n");
+		} catch (InvalidArgumentException e){
+			System.out.println(e.getMessage() + "\n");
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("index out of range\n");
 		}
