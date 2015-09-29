@@ -1,7 +1,7 @@
-Try to rewrite the snapshot dataabase implemented by C using JAVA....
+Try to rewrite the snapshot database implemented by C using JAVA....<br />
 
-v2: 
-80% done
-  todo:
-    refine exception handling
-    think about more useful functions
+v2: <br />
+80% done<br />
+  todo:<br />
+    refine exception handling<br />
+    think about more useful functions<br />
