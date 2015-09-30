@@ -2,10 +2,24 @@ import java.util.*;
 
 public class SnapshotDB {
 
+	/**-
+	 * Structure:
+	 *   Snapshots
+	 *      ^
+	 *     S1 -> entryList<ent1, ent2, ent3...>
+	 *      |               |
+	 *      |        (key,valueList<Object>)
+	 *      |             
+	 *     S2 -> entryList<ent1, ent2, ent3...>
+	 *     ...
+	 */
 	List<Entry> entryList = new LinkedList<Entry>();
-	List<List<Entry>> snapshots = new ArrayList<List<Entry>>();
+	List<Snapshot> snapshots = new ArrayList<Snapshot>();
 	int numBackups = 0;
 
+	final String welcome = "Welcome to use this super simple snapshot database system.\n"
+			+ "Enter HELP to get command lists.\n"
+			+ "Enter BYE to exit";
 	final String[] cmdStr = { "HELP", "BYE", "LIST KEYS", "LIST ENTRIES", "LIST SNAPSHOTS", "GET", "DEL",
 			"PURGE", "SET", "PUSH", "APPEND", "PICK", "PLUCK", "POP", "DROP", "ROLLBACK", "CHECKOUT",
 			"SNAPSHOT","LEN", "REV", "UNIQ" };
@@ -42,7 +56,6 @@ public class SnapshotDB {
 		for(Entry e : entryList)
 			if(e.getKey().equals(key))
 				return e;
-		
 		return null;
 	}
 	
@@ -62,18 +75,20 @@ public class SnapshotDB {
 	// LIST KEYS
 	public void printKeys(){
 		if(entryList.isEmpty()){
-			System.out.println("No keys");
+			System.out.println("no keys\n");
 			return;
 		}
+		
 		for(Entry e : entryList)
 			System.out.println(e.getKey());
 	}
 	// LIST ENTRIES
 	public void printEntries(List<Entry> entlst){
 		if(entlst.isEmpty()){
-			System.out.println("No entries");
+			System.out.println("no entries\n");
 			return;
 		}
+		
 		for(Entry e : entlst){
 			System.out.print(e.getKey() + " ");
 			printValues(e);
@@ -82,29 +97,38 @@ public class SnapshotDB {
 	}
 	// LIST SNAPSHOTS
 	public void printSnapshots(){
+		if(snapshots.isEmpty()){
+			System.out.println("no snapshots\n");
+			return;
+		}
+		
 		for(int i = 1; i <= numBackups; ++i){
 			System.out.println("Snapshot: " + i);
-			printEntries(snapshots.get(i - 1));
+			System.out.println("Timestamp: " + snapshots.get(i - 1).getTimestamp());
+			printEntries(snapshots.get(i - 1).getEntrylist());
 			System.out.println();
 		}
 	}
 	// GET
 	public void showEntry(Command cmd){
 		printValues(getEntry(cmd.key));
+		System.out.println();
 	}
 	// DEL
 	public void deleteEntry(Command cmd){
-		entryList.remove(getEntry(cmd.key));
+		// list.remove() doesn't throw nullpointerexception so we force it to do so.
+		Entry ent = getEntry(cmd.key);
+		if(ent == null) throw new NullPointerException();
+		entryList.remove(ent);
 	}
 	// PURGE
 	public void clearData(Command cmd){
 		deleteEntry(cmd);
 		Entry ent = getEntry(cmd.key);
-		// Maybe assign each entry with an ID will improve performance
-		for(List<Entry> snapshot: snapshots){
-			for(Entry e: snapshot){
-				if(e.getKey().equals(ent.getKey()));
-					snapshot.remove(e);
+		for(Snapshot snapshot: snapshots){
+			for(Entry e: snapshot.getEntrylist()){
+				if(e.getKey().equals(ent.getKey()))
+					snapshot.getEntrylist().remove(e);
 			}
 		}
 	}
@@ -145,7 +169,7 @@ public class SnapshotDB {
 		System.out.println("ok\n");
 	}
 	// POP
-	public void removeFrontValue(Command cmd) throws InvalidArgumentException{
+	public void removeFrontValue(Command cmd){
 		getEntry(cmd.key).getValues().remove(0);
 		System.out.println("ok\n");
 	}
@@ -160,6 +184,8 @@ public class SnapshotDB {
 	}
 	// UNIQ
 	public void removeRepeats(Command cmd){
+		// Short but may be an inefficient way...
+		// Convert value list to Set to eliminate duplicates, and then convert back to list. 
 		Entry ent = getEntry(cmd.key);
 		Set<Object> helper = new LinkedHashSet<Object>(ent.getValues());
 		ent.setValues(new LinkedList<Object> (helper));	
@@ -169,7 +195,8 @@ public class SnapshotDB {
 	public void save(){
 		++numBackups;
 		List<Entry> copy = new LinkedList<Entry>(entryList);
-		snapshots.add(copy);
+		Snapshot backup = new Snapshot(new Date().toString(), copy);
+		snapshots.add(backup);
 		System.out.println("saved as snapshot " + numBackups + "\n");
 	}
 	//CHECKOUT
@@ -178,24 +205,19 @@ public class SnapshotDB {
 			throw new InvalidArgumentException("no such snapshot id");
 		
 		entryList.clear();
-		for(Entry e : snapshots.get(cmd.id - 1)){
+		for(Entry e : snapshots.get(cmd.id - 1).getEntrylist()){
 			entryList.add(e);
 		}
 		System.out.println("ok\n");
 	}
 	// ROLLBACK
 	public void undoSnapshot(Command cmd) throws InvalidArgumentException{
-		try{
-			// Only remove the newer snapshots if there are some
-			if(cmd.id != numBackups)
-				snapshots.removeAll(snapshots.subList(cmd.id, numBackups - 1));
-			restoreData(cmd);
-		} catch (Exception e){
-			throw new InvalidArgumentException("index out of range");
-		}
+		if(cmd.id != numBackups)
+			snapshots.removeAll(snapshots.subList(cmd.id, numBackups - 1));
+		restoreData(cmd);
 	}
 
-	/** METHOD FIELDS */
+	/** COMMAND FETCHING AND PACAKING */
 	public void execute(Command cmd) {
 		try{
 			switch(cmd.instr){
@@ -223,10 +245,12 @@ public class SnapshotDB {
 			}		
 		} catch (NullPointerException e){
 			System.out.println("no such key\n");
-		} catch (InvalidArgumentException e){
-			System.out.println(e.getMessage() + "\n");
+		} catch (IllegalArgumentException e){
+			System.out.println("index out of range\n");
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("index out of range\n");
+		} catch (InvalidArgumentException e){
+			System.out.println(e.getMessage() + "\n");
 		}
 	}
 
@@ -264,7 +288,13 @@ public class SnapshotDB {
 			case "GET":  case "DEL":  case "PURGE":
 			case "POP":  case "LEN":  
 			case "REV":  case "UNIQ": 
-				cmd.key = input[1];
+				// Avoid invalid arguments such as. "GET h balasdafas" or "GET"
+				if(input.length != 2) {
+					System.out.println("no such key\n");
+					return false;
+				} else {
+					cmd.key = input[1];
+				}	
 				break;
 			
 			case "SET": case "PUSH": case "APPEND":
@@ -280,7 +310,7 @@ public class SnapshotDB {
 				try{
 					cmd.index = Integer.parseInt(input[2]);
 				} catch (NumberFormatException e){
-					System.out.println("Missing entry index");
+					System.out.println("Please enter integer value index\n");
 					return false;
 				}
 				break;
@@ -289,7 +319,7 @@ public class SnapshotDB {
 				try{
 					cmd.id = Integer.parseInt(input[1]);
 				} catch (NumberFormatException e){
-					System.out.println("Missing snapshot ID");
+					System.out.println("Please enter integer snapshot id\n");
 					return false;
 				}
 				break;
@@ -297,7 +327,7 @@ public class SnapshotDB {
 			default:
 				break;
 			}
-			
+		
 			return true;
 		}
 	}
@@ -306,7 +336,8 @@ public class SnapshotDB {
 		SnapshotDB db = new SnapshotDB();
 		Scanner sc = new Scanner(System.in);
 		String input;
-
+		System.out.println(db.welcome);
+		
 		label: while (true) {
 			System.out.print("> ");
 
@@ -318,7 +349,8 @@ public class SnapshotDB {
 			Command cmd = db.new Command();
 			String[] parts = input.split(" ");
 			if(!db.canParseArgument(parts, cmd)) continue;
-
+			
+			
 			switch (cmd.instr) {
 			case "HELP":
 				System.out.println(db.instruction);
@@ -332,6 +364,5 @@ public class SnapshotDB {
 			}
 			continue;
 		}
-
 	}
 }
