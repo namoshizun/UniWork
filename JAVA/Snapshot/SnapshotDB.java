@@ -284,48 +284,46 @@ public class SnapshotDB {
 			System.out.println("Invalid Command\n");
 			return false;
 		} else {
-			switch (cmd.instr){
-			case "GET":  case "DEL":  case "PURGE":
-			case "POP":  case "LEN":  
-			case "REV":  case "UNIQ": 
-				// Avoid invalid arguments such as. "GET h balasdafas" or "GET"
-				if(input.length != 2) {
-					System.out.println("no such key\n");
-					return false;
-				} else {
+			try{
+				switch (cmd.instr){
+				case "GET":  case "DEL":  case "PURGE":
+				case "POP":  case "LEN":  
+				case "REV":  case "UNIQ": 
+					// Avoid invalid arguments such as. "GET h balasdafas" or "GET"
+					if(input.length != 2) {
+						System.out.println("no such key\n");
+						return false;
+					} else {
+						cmd.key = input[1];
+					}	
+					break;
+				
+				case "SET": case "PUSH": case "APPEND":
 					cmd.key = input[1];
-				}	
-				break;
-			
-			case "SET": case "PUSH": case "APPEND":
-				cmd.key = input[1];
-				cmd.values = new LinkedList<Object>();
-				int len = input.length;
-				for(int i = 0; i < len - 2; ++i)
-					cmd.values.add(input[i + 2]);
-				break;
-			
-			case "PICK": case "PLUCK":
-				cmd.key = input[1];
-				try{
+					cmd.values = new LinkedList<Object>();
+					int len = input.length;
+					for(int i = 0; i < len - 2; ++i)
+						cmd.values.add(input[i + 2]);
+					break;
+				
+				case "PICK": case "PLUCK":
+					cmd.key = input[1];
 					cmd.index = Integer.parseInt(input[2]);
-				} catch (NumberFormatException e){
-					System.out.println("Please enter integer value index\n");
-					return false;
-				}
-				break;
-			
-			case "DROP": case "ROLLBACK": case "CHECKOUT":
-				try{
+					break;
+				
+				case "DROP": case "ROLLBACK": case "CHECKOUT":
 					cmd.id = Integer.parseInt(input[1]);
-				} catch (NumberFormatException e){
-					System.out.println("Please enter integer snapshot id\n");
-					return false;
+					break;
+				
+				default:
+					break;
 				}
-				break;
-			
-			default:
-				break;
+			} catch (NumberFormatException e){
+				System.out.println("Please enter integer index/id \n");
+				return false;
+			} catch (ArrayIndexOutOfBoundsException e){
+				System.out.println("Key/ID is missing\n");
+				return false;
 			}
 		
 			return true;
