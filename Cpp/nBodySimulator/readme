@@ -1,1 +1,6 @@
-This is a N-body simulator uing Qt
+This is a N-body simulator written using Qt Creator....
+Todo:
+  - generalize undo function
+  - convert between 3D and 2D
+  - trajectories
+  - Implement command design pattern + strategy design pattern
