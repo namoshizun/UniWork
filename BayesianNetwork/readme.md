@@ -49,24 +49,24 @@ Then you should get ouputs like
 > 0.650000
 
 
-3.To benchmark Variable Elimination and Markov Chain Monte Charlo:
-Command line arguments should be given to enter the test mode. Following the format, _QUERY_ _METHOD_ #ITERATION #SAMPLES(if you are testing MCMC), for example:
+3.To benchmark Variable Elimination and Markov Chain Monte Charlo:<br />
+Command line arguments should be given to enter the test mode. Following the format, _QUERY_ _METHOD_ #ITERATION #SAMPLES(if you are testing MCMC), for example:<br />
 > java Main P(c|m,b) MCMC 100 1000
 
-Then you should get outputs like:
+Then you should get outputs like:<br />
 > MCMC computing P(c|m,b) with 100 iterations using sample size 1000.
 > _SOME MILLESECONDS_
 
 
-4.To extend the Bayesian Network:
+4.To extend the Bayesian Network:<br />
 Unfortunately you have to change the source code to do that :(, but i will add creating interface to my todo list.. 
-Here is an example on how would you change the Main.java:
-
+Here is an example on how would you change the Main.java:<br />
+<br />
 To add another node 'G' whose parent node is S and has a probability distribution like
  P(g|s) = 0.3
  P(g|-s) = 0.2
 
-Open Main.java and add the folloing in getNetwork() method:
+Open Main.java and add the folloing in getNetwork() method:<br />
 
 		net.addNode("G", new String [] {"T", "F"}, new String[] {"S"}, new String [] {
 				"G = T, S = T: 0.3",
