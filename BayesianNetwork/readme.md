@@ -32,7 +32,7 @@ The implementation has a demon Bayesian Network on whicn user can perform querie
 How to use
 ----------
 
-1.Compile the program:
+**1.Compile the program:**
 > javac Main.java
 
 
@@ -49,7 +49,7 @@ Then you should get ouputs like
 > 0.650000
 
 
-3.To benchmark Variable Elimination and Markov Chain Monte Charlo:<br />
+**3.To benchmark Variable Elimination and Markov Chain Monte Charlo:**<br />
 Command line arguments should be given to enter the test mode. Following the format, _QUERY_ _METHOD_ #ITERATION #SAMPLES(if you are testing MCMC), for example:<br />
 > java Main P(c|m,b) MCMC 100 1000
 
@@ -58,7 +58,7 @@ Then you should get outputs like:<br />
 > _SOME MILLESECONDS_
 
 
-4.To extend the Bayesian Network:<br />
+**4.To extend the Bayesian Network:**<br />
 Unfortunately you have to change the source code to do that :(, but i will add creating interface to my todo list.. 
 Here is an example on how would you change the Main.java:<br />
 <br />
