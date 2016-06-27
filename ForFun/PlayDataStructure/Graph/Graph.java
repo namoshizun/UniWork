@@ -1,4 +1,4 @@
-package Grapg;
+package Graph;
 
 import java.util.List;
 
