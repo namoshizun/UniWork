@@ -34,15 +34,15 @@ How to use
 
 **1.To perform queries**:
 Give queries from standard input like:
-> java Main
-> VE  <-- this specifies which inference method to use
-> 2   <-- specifies number of queries
-> P(c|m,b)
-> P(-c|m,-b)  <- '-' means 'not'
+> java Main <br />
+> VE  <-- this specifies which inference method to use <br />
+> 2   <-- specifies number of queries <br />
+> P(c|m,b) <br />
+> P(-c|m,-b)  <- '-' means 'not' <br />
 
 Then you should get ouputs like
-> 0.800000
-> 0.650000
+> 0.800000 <br />
+> 0.650000 <br />
 
 
 **2.To benchmark Variable Elimination and Markov Chain Monte Charlo:**<br />
@@ -58,9 +58,9 @@ Then you should get outputs like:<br />
 Unfortunately you have to change the source code to do that :(, but i will add creating interface to my todo list.. 
 Here is an example on how would you change the Main.java:<br />
 <br />
-To add another node 'G' whose parent node is S and has a probability distribution like
- P(g|s) = 0.3
- P(g|-s) = 0.2
+To add another node 'G' whose parent node is S and has a probability distribution like<br />
+ P(g|s) = 0.3<br />
+ P(g|-s) = 0.2<br />
 
 Open Main.java and add the folloing in getNetwork() method:<br />
 
