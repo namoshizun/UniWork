@@ -20,8 +20,8 @@ pima-indians-diabetes.csv is the training data for DT<br />
 pima.csv is used to train NB;<br />
 <br />
 Examples:
-> pima-indians-diabetes.csv _TEST_.csv DT <br />
-> pima.csv _TEST_.csv NB
+> java Main pima-indians-diabetes.csv _TEST_.csv DT <br />
+> java Main pima.csv _TEST_.csv NB
 
 Then the program should ouput a list of classes, each corresponds to an example in test data file. 
 
