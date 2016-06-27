@@ -1,0 +1,768 @@
+low,high,high,high,high,high,high,high,yes
+low,low,low,high,high,low,low,high,no
+high,very high,low,high,high,low,high,high,yes
+low,low,low,low,high,high,low,low,no
+low,high,low,high,high,high,high,high,yes
+low,medium,high,high,high,low,low,high,no
+low,low,low,high,high,high,low,low,yes
+high,medium,high,high,high,high,low,high,no
+low,very high,high,high,high,high,low,high,yes
+high,medium,high,high,high,high,low,high,yes
+low,medium,high,high,high,high,low,high,no
+high,very high,high,high,high,high,high,high,yes
+high,high,high,high,high,low,high,high,no
+low,very high,low,low,high,high,low,high,yes
+low,very high,high,low,high,low,high,high,yes
+high,medium,high,high,high,high,low,high,yes
+low,medium,high,high,high,high,high,high,yes
+high,medium,high,high,high,high,low,high,yes
+low,medium,low,high,low,high,low,high,no
+low,medium,high,high,high,high,high,high,yes
+low,medium,high,high,high,high,high,low,no
+high,low,high,high,high,high,low,high,no
+high,very high,high,high,high,high,low,high,yes
+high,medium,high,high,high,high,low,high,yes
+high,high,high,high,high,high,low,high,yes
+high,medium,high,high,high,high,low,high,yes
+high,high,high,high,high,high,low,high,yes
+low,low,low,low,high,low,low,low,no
+high,high,high,low,high,low,low,high,no
+low,medium,high,high,high,high,low,high,no
+low,medium,high,high,high,high,high,high,no
+low,very high,high,high,high,high,high,low,yes
+low,low,low,low,low,low,low,low,no
+low,low,high,high,high,low,low,low,no
+high,medium,high,high,high,high,low,high,no
+low,medium,low,high,high,low,high,high,no
+high,high,high,high,high,high,low,high,no
+high,medium,high,high,high,high,high,high,yes
+low,low,low,high,high,high,low,low,yes
+low,medium,high,high,high,high,high,high,yes
+low,very high,low,high,low,high,low,low,no
+high,high,high,high,high,high,high,high,no
+high,medium,high,low,high,low,low,high,no
+high,very high,high,high,high,high,high,high,yes
+high,very high,low,high,high,high,low,high,no
+low,very high,low,high,high,high,high,low,yes
+low,high,low,high,high,high,high,high,no
+low,low,high,high,high,high,high,low,no
+high,medium,low,high,high,high,low,high,yes
+high,medium,high,high,high,high,low,low,no
+low,medium,high,low,low,low,low,low,no
+low,medium,low,low,low,low,low,low,no
+low,low,low,low,low,low,low,high,no
+high,very high,high,high,high,high,low,high,yes
+high,high,low,high,high,high,high,high,no
+low,low,low,low,high,low,low,low,no
+high,very high,low,high,high,high,low,high,yes
+low,medium,high,high,high,high,high,high,no
+low,high,high,high,high,high,high,high,no
+low,medium,low,high,high,high,low,low,no
+low,low,high,high,high,high,low,low,no
+high,high,high,high,high,high,low,high,yes
+low,low,low,high,high,low,high,high,no
+low,high,low,high,high,low,high,low,no
+high,medium,low,high,high,high,low,high,yes
+low,low,high,high,high,high,low,high,no
+low,medium,high,high,high,high,high,high,yes
+low,medium,high,high,high,high,high,high,no
+low,low,low,low,low,low,low,low,no
+low,high,high,high,high,high,low,low,no
+low,medium,low,low,high,high,high,low,yes
+low,high,low,high,high,high,low,low,no
+high,medium,high,high,high,high,high,high,yes
+low,high,high,low,high,high,low,low,no
+low,low,high,high,high,high,low,low,no
+low,medium,low,low,high,low,low,low,no
+high,low,high,high,high,high,low,high,no
+low,low,high,high,high,high,low,low,no
+low,high,high,high,high,high,low,low,yes
+low,medium,low,low,high,low,low,low,no
+low,medium,low,low,high,low,low,low,no
+low,low,high,high,high,high,low,low,no
+high,low,high,high,low,high,high,high,no
+low,medium,low,high,high,low,low,low,no
+low,high,high,high,high,high,low,high,yes
+low,medium,high,high,high,high,high,low,no
+high,medium,high,high,high,high,low,high,no
+low,medium,low,high,low,high,low,low,no
+high,high,high,high,high,high,low,high,yes
+low,medium,low,low,high,low,low,low,no
+low,low,low,high,high,low,low,low,no
+low,medium,high,low,high,high,low,high,no
+high,low,high,high,low,high,low,high,no
+low,high,high,high,high,low,low,high,yes
+low,high,high,low,low,low,high,low,no
+low,high,high,high,high,high,low,high,no
+low,low,low,high,high,high,low,low,no
+low,low,low,low,low,low,low,low,no
+low,low,low,high,low,high,low,low,no
+low,medium,high,high,high,high,low,high,yes
+low,very high,high,high,high,high,high,high,yes
+low,high,low,high,high,low,low,low,no
+low,medium,high,high,high,low,low,low,no
+low,low,high,low,low,low,low,low,no
+low,low,low,high,high,high,high,low,no
+low,medium,low,high,high,high,high,low,no
+low,low,high,high,high,low,low,low,no
+low,high,low,high,high,high,low,high,no
+low,low,low,high,low,high,low,low,no
+low,low,high,high,low,high,low,low,yes
+low,very high,high,high,high,high,low,low,yes
+high,very high,low,high,high,high,high,high,yes
+low,low,high,high,low,high,low,low,no
+low,low,low,high,high,high,low,low,no
+high,very high,low,high,high,high,high,high,yes
+low,high,high,high,high,high,high,high,yes
+low,medium,high,high,high,high,low,high,yes
+low,low,low,high,high,high,high,low,no
+low,low,low,low,high,high,low,low,no
+low,low,high,low,low,low,low,low,no
+low,very high,high,high,high,high,high,low,yes
+low,medium,low,high,high,high,low,low,no
+low,medium,high,high,high,high,low,low,no
+low,high,high,high,high,low,low,high,no
+low,medium,high,high,high,high,low,low,yes
+low,low,low,high,high,high,low,low,yes
+low,medium,high,high,high,high,low,high,no
+low,medium,low,high,high,high,low,low,no
+low,medium,high,high,high,high,low,high,yes
+low,medium,high,high,high,high,high,high,yes
+low,very high,high,low,high,high,low,high,yes
+high,medium,low,high,high,high,high,high,yes
+low,very high,low,high,high,high,low,high,yes
+high,low,high,high,high,high,low,high,no
+low,low,low,low,low,low,high,low,no
+low,medium,low,low,high,high,low,high,no
+low,medium,high,high,low,high,high,low,no
+low,low,low,high,high,high,high,low,no
+low,high,high,high,high,high,high,high,no
+low,medium,high,high,high,high,low,low,no
+low,high,high,high,high,low,low,high,no
+low,medium,high,high,high,high,low,high,no
+low,medium,low,high,low,high,low,low,no
+high,medium,low,high,high,high,low,high,yes
+low,high,low,high,high,high,low,low,no
+low,medium,high,low,high,high,high,low,no
+high,low,high,high,high,high,low,high,no
+low,medium,low,high,high,high,high,high,no
+low,high,high,high,high,high,low,high,no
+low,low,high,low,high,low,low,low,no
+low,high,high,high,high,high,low,low,no
+low,medium,low,high,high,low,low,high,no
+high,very high,high,high,high,high,high,high,yes
+low,high,high,high,high,high,high,low,no
+high,very high,high,high,high,high,low,high,yes
+high,high,high,high,high,high,low,high,yes
+low,low,low,low,high,low,high,low,no
+low,medium,low,low,high,low,high,low,no
+low,low,high,low,low,high,low,low,no
+high,very high,high,high,high,high,high,high,yes
+low,high,high,high,high,high,low,high,no
+high,medium,high,high,high,high,low,high,no
+low,medium,high,high,high,high,low,low,no
+low,medium,low,low,high,high,low,low,no
+low,high,high,high,high,high,high,high,yes
+low,medium,high,low,high,high,high,high,yes
+low,high,low,high,high,high,low,low,no
+low,medium,low,high,high,high,high,high,no
+low,medium,low,high,high,high,low,high,no
+low,medium,high,low,low,high,low,high,no
+low,medium,high,high,high,high,low,high,yes
+low,high,high,low,high,high,high,high,yes
+low,low,high,low,high,high,high,low,no
+low,low,low,high,low,high,high,low,no
+low,low,low,high,low,high,low,high,no
+high,very high,high,high,high,high,high,high,yes
+low,low,high,high,high,high,low,high,no
+low,high,high,high,high,high,low,low,yes
+low,high,high,high,high,high,low,high,no
+low,high,high,high,high,high,high,high,yes
+low,low,high,high,high,low,low,high,no
+low,medium,low,low,high,high,high,low,no
+low,medium,high,low,low,high,low,low,no
+low,low,low,high,high,low,low,low,no
+low,high,high,high,high,high,low,high,no
+high,very high,low,high,high,high,high,high,yes
+high,very high,low,high,high,high,high,high,yes
+low,high,high,high,low,high,high,high,yes
+high,medium,high,high,high,high,high,high,yes
+low,high,high,high,high,high,low,low,yes
+low,medium,low,high,high,low,low,low,no
+high,medium,high,high,high,high,low,high,no
+high,very high,low,high,high,high,low,high,yes
+high,high,high,high,high,high,high,high,yes
+high,low,low,low,high,low,low,high,no
+low,very high,high,high,high,high,low,high,yes
+low,medium,low,high,high,low,low,low,no
+low,medium,low,low,low,low,high,low,yes
+low,medium,low,high,high,high,high,low,yes
+low,high,low,high,high,high,low,high,yes
+low,medium,high,low,high,high,high,low,no
+low,high,high,high,high,high,low,low,no
+low,medium,low,low,high,low,high,high,no
+low,low,high,low,low,low,low,low,no
+low,medium,high,high,high,high,low,high,no
+low,medium,high,high,high,low,low,low,no
+high,very high,high,high,high,high,high,high,yes
+low,very high,high,high,high,high,low,high,yes
+low,low,low,high,low,high,low,low,no
+high,very high,high,high,high,high,low,high,yes
+low,low,low,low,high,high,low,low,no
+low,high,high,high,high,high,low,low,no
+high,very high,high,high,high,high,low,high,no
+low,high,low,high,high,high,low,low,yes
+high,medium,high,high,high,high,low,high,yes
+high,high,high,high,high,high,high,high,yes
+low,medium,low,high,high,high,low,low,yes
+low,medium,low,high,high,high,low,high,no
+low,low,high,low,high,high,high,high,yes
+low,medium,low,high,high,high,low,high,yes
+low,very high,low,high,high,high,high,low,yes
+low,very high,high,high,high,high,high,high,yes
+high,medium,high,high,high,low,low,high,no
+high,high,low,high,high,high,high,high,no
+low,medium,low,low,low,low,high,low,no
+low,low,high,high,low,high,low,low,no
+low,medium,high,high,high,high,low,low,no
+low,very high,low,high,high,high,high,low,yes
+low,very high,high,high,high,high,high,high,no
+low,medium,high,high,low,high,low,low,no
+low,high,high,high,high,high,high,low,yes
+low,high,high,high,high,high,low,high,yes
+low,low,high,high,low,low,high,low,no
+low,medium,low,high,high,high,low,high,no
+low,low,low,high,low,high,low,low,no
+low,very high,high,high,high,high,low,low,yes
+high,very high,high,low,high,high,high,high,yes
+low,very high,high,high,high,high,high,low,yes
+high,very high,high,low,high,high,high,high,yes
+low,medium,high,high,high,low,high,low,no
+low,low,low,high,high,high,low,low,no
+low,low,high,high,high,high,low,low,no
+low,high,low,high,high,low,low,low,yes
+low,medium,low,low,high,low,high,high,yes
+low,high,high,high,high,high,low,high,no
+high,very high,high,low,high,high,high,high,yes
+high,medium,low,high,high,high,low,high,no
+low,very high,high,high,high,high,low,low,no
+high,medium,high,high,high,high,low,high,no
+low,medium,high,low,high,high,low,low,no
+high,medium,low,high,high,high,low,high,no
+low,high,high,high,high,high,low,low,no
+low,low,high,low,low,low,low,low,no
+low,low,low,high,high,high,low,low,no
+high,low,low,low,high,high,high,high,yes
+low,medium,low,high,high,high,high,low,yes
+low,medium,low,high,high,high,high,high,no
+low,medium,low,low,high,high,low,low,no
+low,very high,low,low,high,low,high,low,no
+high,very high,high,high,high,high,high,high,yes
+low,very high,low,low,high,high,low,high,no
+low,high,high,high,high,high,high,low,yes
+low,low,high,high,high,high,high,low,no
+low,high,high,low,high,high,low,high,no
+low,medium,low,high,high,high,low,high,yes
+low,low,high,low,low,high,high,high,no
+low,high,high,high,high,high,high,low,yes
+low,high,low,high,high,high,high,low,no
+low,medium,low,high,high,low,low,low,no
+low,high,high,high,high,high,low,low,yes
+high,medium,high,high,high,high,high,high,yes
+low,medium,low,high,low,low,low,low,no
+low,medium,high,high,high,low,low,high,no
+low,low,high,high,low,high,low,low,no
+high,medium,high,high,high,high,low,high,no
+low,medium,high,high,low,high,high,low,no
+high,medium,low,high,high,low,low,high,yes
+low,medium,low,low,high,high,low,low,no
+low,medium,high,high,high,low,high,high,no
+low,medium,low,low,high,low,high,low,no
+low,high,high,high,high,high,low,low,yes
+high,high,high,high,high,high,low,high,no
+high,high,high,low,high,high,low,high,no
+high,very high,high,high,high,high,low,high,yes
+low,medium,high,high,high,low,low,high,yes
+high,high,high,high,high,low,high,high,no
+low,very high,high,high,high,high,high,high,no
+low,medium,high,high,high,high,high,high,yes
+low,low,low,low,low,low,low,low,no
+low,medium,high,high,low,high,low,high,no
+low,low,high,high,low,high,low,low,no
+low,medium,low,high,low,high,high,low,yes
+low,high,high,high,high,high,high,high,yes
+low,high,low,high,high,high,high,low,yes
+low,very high,low,high,high,low,low,high,no
+low,high,low,high,high,high,high,low,no
+low,high,high,high,high,high,low,high,yes
+low,medium,high,high,high,high,low,low,no
+high,medium,high,high,high,high,low,high,yes
+high,medium,high,high,high,low,high,high,no
+low,very high,high,high,high,high,high,high,yes
+low,high,low,high,high,high,low,low,yes
+low,low,high,high,low,high,low,high,no
+low,medium,high,high,high,high,low,low,yes
+low,high,high,high,high,low,low,high,no
+low,medium,high,high,high,high,low,high,no
+high,very high,low,low,high,low,low,high,yes
+low,high,low,low,high,low,low,low,no
+low,high,low,low,high,high,high,low,yes
+low,medium,low,high,high,high,high,high,yes
+low,low,low,high,high,low,low,high,no
+low,medium,high,high,high,high,high,low,no
+low,very high,high,low,high,low,low,low,yes
+low,medium,low,low,low,high,high,low,no
+high,medium,high,high,high,high,high,high,yes
+low,medium,low,low,high,high,low,low,no
+low,low,high,low,low,low,low,high,no
+low,very high,high,high,high,high,low,high,yes
+low,medium,low,high,high,high,low,low,no
+low,very high,high,high,high,low,low,high,yes
+low,high,low,low,high,high,low,high,no
+low,medium,high,high,high,high,low,low,yes
+low,medium,high,low,high,high,low,high,yes
+high,high,high,high,low,low,high,high,yes
+low,medium,high,high,high,high,low,low,no
+low,very high,high,low,high,low,low,low,no
+low,medium,low,high,high,high,high,high,yes
+high,very high,high,high,high,high,low,high,no
+low,medium,high,high,high,high,low,low,yes
+low,medium,high,high,low,high,low,high,no
+high,medium,high,low,high,low,high,high,no
+low,low,low,low,low,high,low,low,no
+low,very high,high,high,high,high,low,high,yes
+high,medium,high,high,high,low,low,high,no
+low,low,low,low,low,low,low,low,no
+low,very high,high,high,high,high,low,low,no
+low,medium,high,high,high,high,high,high,no
+low,medium,high,high,high,high,low,high,yes
+high,high,high,high,high,high,high,high,yes
+high,very high,high,high,high,high,low,high,yes
+low,high,high,low,high,low,low,low,no
+low,low,high,low,low,low,high,high,no
+low,medium,low,high,high,high,low,low,no
+low,medium,high,high,high,high,low,high,no
+high,low,high,high,high,high,low,high,no
+high,medium,high,high,high,high,low,high,no
+low,high,low,low,low,high,high,low,no
+low,medium,high,high,high,low,low,low,no
+low,low,low,low,low,low,low,low,no
+low,medium,high,high,high,high,low,high,yes
+low,low,high,high,high,high,low,high,no
+low,high,high,high,high,high,low,high,no
+low,low,high,high,high,high,low,high,no
+low,low,low,low,low,low,high,low,no
+low,low,high,high,high,high,high,low,no
+high,very high,high,high,high,high,low,high,yes
+low,medium,low,high,high,high,high,low,yes
+high,high,high,high,high,high,high,high,yes
+high,low,high,high,low,high,low,high,no
+low,very high,high,high,high,high,high,high,yes
+low,very high,low,high,high,high,high,high,yes
+low,very high,high,high,high,high,low,high,no
+low,medium,high,high,high,high,low,high,no
+low,high,high,high,high,high,low,high,yes
+low,high,high,high,high,high,low,high,no
+low,low,low,high,low,high,low,high,no
+low,medium,high,high,high,high,low,high,yes
+low,medium,low,low,high,low,low,low,no
+low,low,high,low,low,high,low,low,no
+low,high,high,high,high,high,low,high,yes
+low,very high,high,high,high,high,high,low,yes
+low,medium,low,low,high,high,high,low,no
+low,low,low,low,low,high,high,low,no
+low,medium,low,high,high,high,low,low,no
+low,medium,low,high,high,high,high,low,no
+high,high,high,high,high,high,high,high,yes
+low,low,high,low,low,low,low,low,no
+low,low,low,high,low,high,low,low,no
+low,very high,high,high,high,high,low,high,yes
+low,low,high,high,low,high,high,high,no
+low,medium,high,high,low,high,high,low,no
+low,medium,low,low,high,low,low,low,no
+low,medium,low,low,high,low,high,low,no
+low,low,low,low,low,low,high,low,no
+low,medium,high,high,high,low,low,low,no
+low,medium,low,low,low,low,low,low,no
+low,medium,high,high,high,high,high,high,yes
+high,medium,high,high,high,high,low,high,yes
+low,high,high,high,high,high,low,high,yes
+low,medium,low,low,low,high,high,low,no
+low,medium,low,high,high,high,low,high,no
+low,very high,high,high,high,high,low,low,yes
+low,high,low,low,high,low,low,low,no
+low,medium,high,low,low,low,low,high,no
+low,very high,high,high,high,high,high,high,yes
+low,medium,low,high,high,high,high,low,no
+low,low,low,high,high,low,high,high,no
+low,high,low,high,high,high,low,low,yes
+low,low,high,high,high,low,low,low,no
+low,very high,high,high,high,high,low,low,yes
+low,low,low,high,high,high,low,high,yes
+low,high,low,high,high,low,low,high,no
+low,high,high,high,high,high,low,high,yes
+high,low,high,high,high,high,low,high,no
+low,very high,low,high,high,high,low,high,yes
+low,medium,low,high,high,high,low,low,no
+low,medium,high,high,high,high,low,high,yes
+low,medium,low,high,high,low,low,low,no
+high,very high,high,high,high,low,high,high,yes
+low,very high,low,high,high,high,high,low,yes
+low,medium,high,high,high,high,high,low,no
+low,medium,high,high,high,high,high,low,no
+low,high,high,low,high,high,high,low,no
+low,high,high,low,low,low,low,low,no
+low,high,low,high,high,high,high,low,yes
+low,very high,high,high,high,high,low,low,yes
+low,low,low,low,high,low,high,low,no
+low,high,high,high,high,high,high,high,yes
+low,low,low,high,high,low,high,low,no
+low,high,low,high,high,low,low,low,yes
+low,medium,high,high,high,high,low,low,no
+low,low,low,low,low,low,high,low,no
+low,medium,low,high,low,high,low,low,no
+low,medium,low,low,high,high,low,low,no
+high,high,high,high,high,high,low,high,yes
+low,very high,high,high,high,high,low,high,yes
+low,low,high,high,high,high,low,low,no
+low,very high,low,high,high,high,low,high,yes
+low,high,high,high,high,high,low,low,no
+low,low,high,high,high,high,low,high,yes
+low,low,high,high,high,low,low,low,no
+low,low,high,low,low,high,high,high,no
+low,low,high,low,low,high,low,low,no
+low,high,high,high,high,low,low,high,no
+low,low,low,low,high,low,high,high,no
+low,high,high,high,high,high,low,high,yes
+high,high,high,high,high,high,low,high,no
+low,high,high,high,high,high,low,low,no
+low,low,high,low,high,low,low,low,no
+low,medium,high,high,high,high,high,high,no
+low,very high,high,high,high,high,low,high,yes
+low,low,low,low,low,high,low,low,no
+low,medium,low,high,high,high,low,low,no
+high,medium,high,high,high,high,high,high,yes
+low,medium,low,low,high,high,low,high,yes
+low,very high,high,high,low,high,high,low,yes
+low,medium,high,low,low,low,high,low,no
+low,low,high,high,high,high,low,low,no
+low,medium,low,high,low,high,low,low,yes
+low,medium,high,low,low,high,low,low,no
+low,low,low,low,high,low,low,low,no
+low,high,high,high,high,high,high,low,yes
+low,low,low,high,high,high,low,low,no
+low,medium,high,high,high,low,high,high,no
+low,medium,low,high,high,high,low,low,no
+high,very high,low,high,high,high,low,high,yes
+low,high,low,high,high,low,high,high,no
+low,low,low,high,low,high,low,low,no
+high,high,high,high,high,high,high,high,yes
+high,high,high,high,low,low,low,high,no
+high,medium,high,low,low,low,high,high,no
+low,low,low,high,high,low,low,low,no
+high,low,high,high,low,high,high,high,no
+low,low,high,high,high,high,low,high,no
+high,medium,high,high,high,low,high,high,no
+low,medium,low,low,high,low,low,low,no
+low,low,low,low,low,high,low,low,no
+low,low,low,high,high,high,high,low,no
+high,medium,high,high,high,high,low,high,yes
+low,high,high,high,high,high,high,low,no
+low,high,high,high,high,high,high,low,no
+low,high,high,high,high,high,low,low,no
+low,medium,low,high,high,high,low,low,no
+high,high,high,high,high,high,low,high,no
+low,medium,low,high,high,high,low,low,no
+low,high,high,high,high,low,low,high,no
+low,medium,high,high,high,high,high,high,yes
+high,medium,high,low,high,low,low,high,no
+high,medium,high,high,low,low,low,high,no
+low,high,high,high,high,high,low,high,no
+low,very high,high,high,high,high,low,high,yes
+low,medium,high,high,high,high,low,high,no
+low,low,low,low,low,high,low,low,no
+low,low,high,high,high,high,low,low,no
+low,high,high,high,high,high,high,high,yes
+low,high,low,high,high,high,low,low,yes
+low,high,low,high,high,high,high,low,no
+low,very high,high,high,high,high,high,high,no
+low,low,high,low,high,low,low,low,no
+high,very high,high,high,high,low,high,high,no
+low,low,low,high,low,high,high,low,no
+low,low,high,high,high,high,low,high,no
+low,low,low,high,high,high,low,high,no
+low,medium,high,low,high,high,high,high,yes
+low,low,high,high,high,high,low,low,no
+low,very high,high,high,high,low,low,high,no
+low,medium,low,high,high,low,low,high,no
+low,low,high,low,low,high,high,low,no
+high,very high,high,high,high,low,low,high,yes
+low,high,high,high,high,high,high,high,no
+low,medium,high,low,low,low,low,low,no
+low,low,high,high,high,high,low,low,no
+low,medium,low,high,high,high,high,high,yes
+high,low,low,high,low,high,high,high,no
+low,low,high,high,high,high,low,high,no
+high,low,high,high,high,high,low,high,no
+low,very high,high,high,high,high,low,high,yes
+low,high,low,low,high,high,high,low,no
+low,low,low,low,low,high,high,low,no
+high,medium,high,high,high,low,low,high,no
+high,low,high,high,high,high,low,high,yes
+low,high,low,low,high,low,low,low,no
+high,low,low,high,high,low,low,high,no
+low,low,low,high,high,low,low,low,no
+low,low,low,low,low,low,low,low,no
+low,very high,high,low,high,high,low,low,yes
+high,high,high,high,high,high,high,high,yes
+high,medium,high,high,high,high,low,high,no
+high,low,low,high,high,high,low,high,no
+low,high,high,low,high,low,high,high,no
+low,low,high,high,low,low,low,low,no
+low,medium,high,high,high,high,low,low,no
+low,medium,high,high,high,high,low,low,no
+high,high,high,high,high,high,high,high,yes
+low,medium,low,high,high,high,low,low,no
+low,low,low,low,high,low,low,low,no
+low,low,low,low,low,low,low,low,no
+low,medium,high,low,high,low,low,low,no
+low,medium,low,high,high,high,low,low,no
+low,medium,low,high,high,low,high,high,no
+low,medium,low,low,high,high,high,low,no
+low,medium,high,high,high,high,high,low,no
+low,low,low,high,low,high,high,high,no
+low,low,high,high,high,high,low,high,no
+low,low,low,high,low,high,high,low,no
+low,high,high,high,high,high,low,low,yes
+low,medium,high,high,high,high,low,high,no
+low,low,low,high,high,low,high,high,no
+low,medium,high,high,high,high,high,low,no
+low,high,high,high,high,high,high,high,yes
+high,medium,high,high,high,high,high,high,yes
+low,high,high,high,high,high,high,low,yes
+high,low,high,high,high,high,high,high,yes
+low,low,high,low,low,high,low,low,no
+low,low,high,high,low,high,low,high,no
+high,very high,high,high,high,high,low,high,yes
+low,very high,high,high,high,high,high,high,yes
+low,high,low,low,high,high,low,low,no
+low,very high,high,high,low,high,low,high,no
+low,very high,high,high,high,high,high,high,no
+low,medium,high,high,high,high,low,low,no
+low,low,low,high,high,high,high,low,no
+low,medium,high,high,high,high,low,high,no
+low,low,low,high,low,high,low,low,no
+low,low,low,low,high,high,low,low,no
+high,medium,high,high,high,low,low,high,no
+low,low,high,high,high,high,low,high,no
+high,medium,high,high,high,high,low,high,no
+high,medium,low,high,high,high,low,high,no
+high,low,high,high,high,high,low,high,no
+low,medium,high,high,high,high,low,high,yes
+low,very high,low,high,high,high,low,low,yes
+low,low,low,high,low,high,low,low,no
+low,low,low,low,low,low,low,high,no
+low,low,high,high,high,high,high,low,no
+low,low,low,low,high,low,high,low,no
+low,low,high,high,low,high,low,low,no
+low,low,low,high,high,high,low,high,no
+low,high,high,high,high,high,low,high,no
+low,medium,low,high,high,high,low,high,yes
+low,low,high,high,high,high,low,high,no
+low,high,high,high,high,low,low,low,no
+low,medium,low,high,low,high,low,low,no
+low,low,low,low,high,high,low,low,no
+low,high,high,high,high,high,high,low,no
+low,medium,low,high,low,high,low,low,no
+low,medium,low,low,high,low,high,high,no
+low,medium,high,high,high,high,high,low,yes
+high,high,low,high,high,low,low,high,no
+low,very high,high,high,high,high,high,high,yes
+low,high,high,high,high,high,low,low,yes
+low,medium,low,high,high,low,low,low,no
+high,medium,high,low,high,low,low,high,no
+high,medium,high,high,high,high,low,high,no
+high,medium,high,high,high,high,high,high,yes
+low,low,low,low,high,low,low,low,no
+high,high,low,high,high,high,low,high,yes
+low,medium,low,high,high,low,low,high,no
+low,very high,high,high,high,high,high,high,yes
+low,low,high,high,high,low,low,low,no
+high,medium,high,high,high,high,high,high,yes
+low,medium,high,high,high,high,low,low,no
+low,high,high,high,high,high,low,high,yes
+low,low,low,low,high,high,high,low,no
+low,medium,high,high,high,high,high,high,no
+low,very high,high,low,high,high,high,low,yes
+low,low,high,high,high,high,low,high,no
+low,low,low,low,low,high,high,low,no
+low,very high,high,high,high,high,low,high,yes
+low,medium,low,low,high,low,low,low,no
+low,medium,high,low,high,low,low,low,no
+low,low,high,high,high,low,low,low,no
+low,medium,high,high,high,high,low,high,no
+high,high,high,high,high,high,high,high,yes
+low,very high,high,high,high,high,low,high,yes
+low,medium,low,high,high,high,low,low,no
+low,very high,high,high,high,high,high,low,yes
+low,low,low,high,low,low,low,low,no
+low,high,high,high,high,high,low,low,no
+low,medium,low,low,high,low,low,low,no
+low,medium,low,low,high,high,low,low,no
+low,very high,low,low,high,high,high,high,yes
+high,very high,high,high,high,high,high,high,yes
+low,medium,high,high,high,high,high,low,no
+high,high,high,high,high,high,high,high,yes
+low,medium,high,high,high,low,low,low,no
+low,medium,high,high,high,high,low,high,no
+low,low,low,low,low,low,low,low,no
+high,medium,high,high,high,high,high,high,yes
+low,medium,high,high,high,high,low,low,yes
+low,medium,high,high,high,high,low,low,no
+low,low,high,low,high,low,high,low,no
+low,very high,high,high,high,high,high,high,no
+low,low,high,high,high,high,low,low,no
+low,medium,low,high,high,high,low,low,no
+low,low,high,high,low,high,low,high,no
+low,medium,low,high,high,low,low,low,no
+low,high,high,high,high,high,low,low,no
+low,high,high,high,high,high,low,high,no
+low,low,low,low,high,low,low,low,no
+high,medium,low,high,high,high,high,high,yes
+low,medium,high,high,high,high,low,low,no
+low,medium,low,high,high,low,low,low,no
+low,high,high,low,high,high,low,low,no
+high,low,low,high,high,low,low,high,no
+high,medium,high,high,high,high,low,high,yes
+low,medium,high,high,high,high,low,high,no
+low,low,high,low,low,high,high,low,no
+high,low,high,high,high,high,high,high,yes
+low,medium,high,low,low,low,low,low,no
+low,medium,high,low,high,high,high,low,no
+low,high,high,high,high,high,low,low,no
+low,high,high,high,high,high,low,high,yes
+low,low,high,high,high,high,high,high,no
+low,medium,high,high,high,high,high,low,no
+low,very high,high,high,high,high,low,high,no
+low,very high,high,low,high,low,low,high,yes
+low,very high,low,high,high,high,low,low,yes
+high,high,high,high,high,high,low,high,yes
+low,medium,low,high,high,low,low,low,no
+low,low,low,high,high,low,low,low,no
+low,medium,low,low,high,high,low,low,no
+low,medium,high,high,low,high,low,low,no
+low,medium,low,high,high,low,low,low,no
+low,medium,high,high,high,high,low,low,no
+low,very high,low,high,high,high,low,low,yes
+low,medium,low,high,high,low,low,low,no
+low,medium,high,high,high,high,high,high,no
+high,medium,high,high,high,high,low,high,no
+low,low,high,high,low,high,high,low,yes
+high,very high,high,high,high,high,low,high,no
+low,very high,high,high,high,high,high,low,yes
+high,very high,high,high,high,high,low,high,yes
+high,high,high,high,high,high,high,high,yes
+low,medium,low,high,high,high,low,high,yes
+low,medium,high,high,high,high,low,low,no
+low,high,high,low,high,high,low,high,yes
+high,medium,high,high,high,high,low,high,yes
+low,low,low,high,high,high,low,high,no
+high,high,high,high,high,high,low,high,no
+low,very high,low,high,high,high,high,high,no
+low,low,low,low,high,low,high,low,no
+high,low,high,low,low,high,low,high,no
+low,medium,high,high,high,high,high,low,no
+high,low,high,high,high,high,high,high,no
+low,very high,high,high,high,high,low,high,yes
+high,very high,high,high,high,low,low,high,yes
+low,low,low,high,high,high,low,low,no
+low,medium,low,high,high,high,low,low,yes
+low,medium,low,low,high,low,high,low,no
+low,low,low,high,low,low,low,low,no
+low,very high,high,high,high,high,low,low,yes
+low,low,low,high,high,high,low,low,no
+low,medium,high,high,high,high,high,low,yes
+low,high,high,high,high,high,high,high,no
+low,high,high,high,high,high,high,low,no
+low,high,low,high,high,low,low,low,no
+low,medium,low,low,high,high,low,high,no
+low,high,high,high,high,low,high,low,no
+low,high,high,high,high,high,low,high,yes
+high,medium,high,high,high,low,high,high,no
+high,very high,high,high,high,high,low,high,yes
+low,medium,high,high,high,high,high,low,no
+high,high,low,high,high,high,low,high,yes
+low,low,low,high,high,low,low,low,no
+high,high,high,high,high,high,low,high,yes
+low,very high,high,low,high,high,low,high,yes
+low,low,high,high,high,low,low,low,no
+low,medium,high,low,high,high,high,low,no
+low,medium,high,high,high,high,high,low,no
+low,medium,high,high,high,high,low,low,no
+low,medium,high,high,high,high,high,high,yes
+low,very high,high,high,high,high,high,high,yes
+low,high,high,high,high,high,low,high,no
+low,medium,high,low,high,high,low,low,no
+low,low,high,high,high,high,low,low,no
+high,medium,high,high,high,high,low,high,yes
+low,medium,low,low,high,high,low,low,no
+high,very high,high,high,high,high,low,high,yes
+low,low,low,high,high,high,high,low,yes
+low,very high,low,low,high,high,low,low,no
+low,medium,high,high,low,high,low,high,no
+high,high,low,high,high,high,low,high,yes
+low,high,low,low,high,low,low,low,no
+low,medium,high,high,high,high,low,high,no
+high,very high,low,high,high,high,high,high,yes
+low,very high,high,high,high,high,high,high,yes
+high,low,high,low,high,low,high,high,no
+low,medium,low,high,high,high,low,low,no
+low,low,high,high,high,high,low,high,yes
+low,low,high,low,high,high,low,high,no
+low,medium,low,high,high,high,low,low,no
+low,high,low,high,high,high,low,high,yes
+low,medium,high,high,high,high,low,high,no
+low,medium,high,high,high,high,low,high,no
+low,medium,high,high,high,high,low,high,no
+low,medium,high,high,high,high,low,low,no
+low,high,high,high,high,high,low,low,no
+low,very high,high,high,high,low,low,low,no
+low,low,low,high,high,high,low,low,no
+low,high,high,low,low,high,low,high,yes
+high,medium,high,high,high,high,low,low,yes
+low,very high,high,high,high,high,high,low,yes
+low,medium,low,high,high,high,low,low,no
+low,medium,high,high,high,low,high,high,no
+low,low,low,high,high,high,low,low,no
+low,medium,high,high,high,high,low,low,no
+high,low,high,low,high,high,high,high,no
+low,low,low,low,high,high,low,low,no
+low,medium,high,high,high,high,low,high,yes
+high,medium,high,high,high,high,high,high,yes
+low,medium,low,low,high,high,low,low,no
+low,medium,low,low,high,high,low,low,no
+high,high,high,high,high,high,high,high,yes
+high,high,high,high,high,high,high,high,no
+high,medium,high,high,high,high,low,high,no
+low,high,high,high,high,high,low,low,yes
+low,low,high,high,low,high,high,high,no
+low,very high,high,low,high,high,low,high,yes
+low,very high,low,high,high,low,low,high,yes
+low,high,high,high,high,high,high,low,yes
+low,medium,high,high,low,high,low,low,no
+low,medium,low,high,high,low,low,low,no
+low,very high,high,high,high,high,low,low,yes
+high,high,high,high,high,high,low,high,yes
+low,high,high,high,high,high,high,high,yes
+high,high,high,high,high,high,low,high,no
+low,medium,high,high,high,high,low,high,yes
+low,medium,high,high,high,high,low,low,no
+low,very high,high,high,high,high,low,high,yes
+low,low,low,high,low,high,high,low,no
+high,very high,high,high,high,high,low,high,yes
+high,low,low,high,high,low,low,high,no
+high,medium,high,high,high,high,low,high,no
+low,medium,high,high,high,high,low,low,no
+low,medium,high,low,high,low,low,high,no
+low,medium,low,high,high,high,low,high,yes
+low,low,high,high,high,high,low,low,no
