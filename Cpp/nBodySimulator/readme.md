@@ -3,6 +3,8 @@
 ##Introduction
 This is a Planetarium/N-body Simulation program originially completed as an assignment of the USYD course INFO3220(Oject oriented design). It is developed using Qt and i would love to keep building it to make it a nice looking simulator  :)  
 
+Design patterns: Sigleton, Factory, Composite, Memento, Visitor
+
 ##Installation
 Download all necessary files and open .pro in Qt Creator, remember to place config.txt under the working directory.
 
