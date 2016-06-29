@@ -50,6 +50,7 @@ public:
     double getBaseDistanceScale() const  { return m_distanceScale; }
     double getBaseRadiusScale() const    { return m_radiusScale; }
     double getBaseLogPointRadius() const { return m_logPointRadius; }
+
     // set changes
     void setStepSizeChange(double var) {
         if(m_stepSizeChange + m_physicsStepSize + var > 0) m_stepSizeChange += var;

@@ -3,11 +3,11 @@
 #include "visitor.h"
 #include "config.h"
 
-class CensusVisitor : public Visitor
+class InspectVisitor : public Visitor
 {
 public:
-    CensusVisitor(int x, int y);
-    ~CensusVisitor();
+    InspectVisitor(int x, int y);
+    ~InspectVisitor();
 
     void visit (UniverseBody* body);
     UniverseBody* getTarget() { return target; }

@@ -20,9 +20,8 @@ Dialog::Dialog(QWidget *parent)
     , m_adjusting(false)
     , m_timestamp(0)
     , m_config(Config::getInstance())
-    // controllable at runtime
     , m_readyToAccel(false)
-    , m_readyToLocate(false)
+    , m_readyToRecenter(false)
     , m_lockingPlanet(false)
 {
     m_config->read("config.txt");
@@ -54,6 +53,7 @@ Dialog::Dialog(QWidget *parent)
     connect(ui->btn_replay, SIGNAL(released()), this, SLOT(replaySimulation()));
     connect(ui->btn_submitViewChange, SIGNAL(released()), this, SLOT(submitViewChange()));
     connect(ui->btn_undoChange, SIGNAL(released()), this, SLOT(undo()));
+
     //setup timer
     m_timer = new QTimer(this);
     m_timerAdjust = new QTimer(this);
@@ -185,9 +185,8 @@ void Dialog::keyPressEvent(QKeyEvent *event)
     case Qt::Key_A:
         m_readyToAccel = true;
         return;
-
     case Qt::Key_L:
-        m_readyToLocate = true;
+        m_readyToRecenter = true;
         return;
     default:
         return;
@@ -201,7 +200,7 @@ void Dialog::keyReleaseEvent(QKeyEvent *event)
         m_readyToAccel = false;
         return;
     case Qt::Key_L:
-        m_readyToLocate = false;
+        m_readyToRecenter = false;
         return;
     default:
         return;
@@ -213,20 +212,22 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
 {
     ui->input_xCenter->clearFocus();
     ui->input_yCenter->clearFocus();
-    if (m_readyToLocate) {
+
+    if (m_readyToRecenter) {
+        addToHistory("SET_CENTER");
         s.m_center.setX(event->pos().x());
         s.m_center.setY(event->pos().y());
-        qDebug() << "df_x" << s.m_width/2 - s.m_center.x();
         s.offsetX += s.m_width/2 - s.m_center.x();
         s.offsetY += s.m_height/2 - s.m_center.y();
     }
     else {
-        Visitor* visitor = new CensusVisitor(event->pos().x() - s.offsetX, event->pos().y() - s.offsetY);
-        m_universe->accept(visitor);
-        UniverseBody* p = dynamic_cast<CensusVisitor*>(visitor)->getTarget();
+        // inspect planet information
+        Visitor* visitor = new InspectVisitor(event->pos().x() - s.offsetX, event->pos().y() - s.offsetY);
+        m_universe->accept(visitor);// try to find a planet that is considered to be clicked on
+        UniverseBody* p = dynamic_cast<InspectVisitor*>(visitor)->getTarget();
 
         if (p != NULL) {
-            std::stringstream ss;
+            std::stringstream sstream;
             PlanetInfoDialog* pDialog = new PlanetInfoDialog(this);
             ui_planetInfo->setupUi(pDialog);
             connect(ui_planetInfo->btn_trace, &QAbstractButton::released, this, [=]{ lockBody(p); });
@@ -237,11 +238,11 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
             ui_planetInfo->l_mass->setText(QString::number(p->getMass()));
             ui_planetInfo->l_parent->setText(QString::fromStdString(p->getParentName()));
             ui_planetInfo->l_radius->setText(QString::number(p->getRadius()));
-            ss << "X = " << p->getPosition().x() << " Y = " << p->getPosition().y();
-            ui_planetInfo->l_pos->setText(QString::fromStdString(ss.str()));
-            ss.str("");
-            ss << "X = " << p->getVelocity().x() << " Y = " << p->getVelocity().y();
-            ui_planetInfo->l_veloc->setText(QString::fromStdString(ss.str()));
+            sstream << "X = " << p->getPosition().x() << " Y = " << p->getPosition().y();
+            ui_planetInfo->l_pos->setText(QString::fromStdString(sstream.str()));
+            sstream.str(""); // clear string stream
+            sstream << "X = " << p->getVelocity().x() << " Y = " << p->getVelocity().y();
+            ui_planetInfo->l_veloc->setText(QString::fromStdString(sstream.str()));
 
             pDialog->exec();
             delete pDialog;
@@ -252,29 +253,20 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
 
 void Dialog::wheelEvent(QWheelEvent *event)
 {
-    QPoint numDegrees = event->angleDelta() / 8;
-    if (numDegrees.y() > 0) { // forward
-        if (m_readyToAccel)
-            m_config->setStepSizeChange(s.m_stepSizeVariance);
-        else {
-            m_config->setDistanceScaleChange(-s.m_distanceScaleVariance);
-            m_config->setRadiusScaleChange(-s.m_radiusScaleVariance);
-            m_config->setLogPointRadiusChange(-s.m_logPointVariance);
-        }
+    QPoint degree = event->angleDelta() / 8;
+    int sign = degree.y() > 0 ? 1 : -1; // 1 = forward, -1 = backward
+    if (m_readyToAccel) {
+        m_config->setStepSizeChange(sign * s.m_stepSizeVariance);
     } else {
-        if (m_readyToAccel)
-            m_config->setStepSizeChange(-s.m_stepSizeVariance);
-        else {
-            m_config->setDistanceScaleChange(s.m_distanceScaleVariance);
-            m_config->setRadiusScaleChange(s.m_radiusScaleVariance);
-            m_config->setLogPointRadiusChange(s.m_logPointVariance);
-        }
+        m_config->setDistanceScaleChange(sign * s.m_distanceScaleVariance);
+        m_config->setRadiusScaleChange(sign * s.m_radiusScaleVariance);
+        m_config->setLogPointRadiusChange(sign * s.m_logPointVariance);
     }
 }
 /********** Timed Events **********/
 void Dialog::adjustView()
 {
-    // 7-tuple form: <xsum, ysum, counter, min_x, min_y, max_x, max_y> (absolute values)
+    // form collects: <xsum, ysum, counter, min_x, min_y, max_x, max_y> (all are absolute)
     Visitor* visitor = new AdjustVisitor();
     m_universe->accept(visitor);
     const Form& form = dynamic_cast<AdjustVisitor*>(visitor)->getForm();
@@ -355,7 +347,7 @@ void Dialog::paintEvent(QPaintEvent *event)
 
     // draw the center cross
     painter.setPen(Qt::red);
-    if (m_readyToLocate){
+    if (m_readyToRecenter){
         painter.drawLine(0, h/2, w, h/2);
         painter.drawLine(w/2, 0, w/2, h);
     }
@@ -364,8 +356,7 @@ void Dialog::paintEvent(QPaintEvent *event)
     ui->l_yoffset->setText(QString::number(oy));
 }
 
-/********** Snapshot and Override **********/
-
+/********** Snapshot/Overwrite **********/
 void Dialog::addToHistory(const std::string &action)
 {
     ui->comboBox_history->addItem(QString::fromStdString(action));
@@ -392,21 +383,12 @@ void Dialog::restoreFromMemento(const Memento *m)
         s.offsetY = state.offsetY;
         s.m_p = state.m_p;
         break;
-    case ZOOM_IN:
-    case ZOOM_OUT:
-        s.m_distanceScaleVariance = state.m_distanceScaleVariance;
-        s.m_logPointVariance = state.m_logPointVariance;
-        s.m_radiusScaleVariance = state.m_radiusScaleVariance;
-        break;
     case ADJUST:
         s.offsetX = state.offsetX;
         s.offsetY = state.offsetY;
         s.m_distanceScaleVariance = state.m_distanceScaleVariance;
         s.m_logPointVariance = state.m_logPointVariance;
         s.m_radiusScaleVariance = state.m_radiusScaleVariance;
-        break;
-    case ACCELERATE:
-    case DECELERATE:
         break;
     default:
         break;
@@ -422,14 +404,10 @@ void Dialog::warn(const std::string& text)
     msgBox.exec();
 }
 
-ACTION Dialog::getAction(const std::string& s)
+UNDOABLE_ACTION Dialog::getAction(const std::string& s)
 {
     if (s == "SET_CENTER") return SET_CENTER;
     if (s == "TRACK_PLANET") return TRACK_PLANET;
-    if (s == "ZOOM_IN") return ZOOM_IN;
-    if (s == "ZOOM_OUT") return ZOOM_OUT;
-    if (s == "ACCELERATE") return ACCELERATE;
-    if (s == "DECELERATE") return DECELERATE;
     if (s == "ADJUST") return ADJUST;
     return INVALID;
 }

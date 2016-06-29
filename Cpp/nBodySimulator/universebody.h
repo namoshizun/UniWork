@@ -14,9 +14,6 @@ public:
 
     virtual ~UniverseBody() {}
 
-    /*********************************************
-     * Methods newly added
-     * *******************************************/
     void accept (Visitor* visitor) { visitor->visit(this); }
 
     /*********************************************

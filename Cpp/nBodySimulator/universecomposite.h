@@ -19,9 +19,6 @@ public:
     //build up the composition
     virtual void add(UniverseComponent* component) { m_children.push_back(component); }
 
-    /*********************************************
-     * Methods newly added
-     * *******************************************/
     void accept (Visitor* visitor) { visitor->visit(this); }
 
     /*********************************************

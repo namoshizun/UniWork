@@ -3,14 +3,15 @@
 #include "universecomponent.h"
 #include "dialog.h"
 
+
+
+
 class State
 {
 public:
     State() {}
     virtual ~State() {}
     // TODO: override ostream operator
-private:
-    long m_timestamp;
 };
 
 class ViewState : public State
@@ -52,33 +53,6 @@ private:
     double offsetY;
     // locked planet
     UniverseBody* m_p;
-};
-
-class SimulationState : public State
-{
-public:
-    SimulationState() {} // TODO
-    ~SimulationState() {}
-
-private:
-    friend class Dialog;
-    // flags
-    bool m_paused; //is the simulation paused?
-    bool m_renderZodiacs; //should Zodiacs be rendered?
-    bool m_renderLabels; //should labels be rendered?
-    bool m_readyToLocate;
-    bool m_readyToAccel;
-    bool m_adjusting;
-    bool m_lockingPlanet;
-
-    // used for auto-adjust center
-    int margin = 100;
-
-    ViewState s; // A LOT OF THIGS!
-    std::list<Zodiac>* m_zodiacs; //Vector of zodiac lines
-    UniverseComponent* m_universe; //a composite of systems...
-    Config* m_config; //the singleton config instance
-
 };
 
 #endif // DIALOGSTATE_H

@@ -22,8 +22,8 @@ SOURCES += main.cpp\
     zodiac.cpp \
     universecomponentfactory.cpp \
     adjustvisitor.cpp \
-    censusvisitor.cpp \
-    visitor.cpp
+    visitor.cpp \
+    inspectvisitor.cpp
 
 HEADERS  += dialog.h \
     universecomponent.h \
@@ -34,10 +34,10 @@ HEADERS  += dialog.h \
     universecomponentfactory.h \
     visitor.h \
     adjustvisitor.h \
-    censusvisitor.h \
     form.h \
     memento.h \
-    state.h
+    state.h \
+    inspectvisitor.h
 
 FORMS    += dialog.ui \
     planetinfo.ui

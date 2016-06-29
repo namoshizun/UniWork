@@ -8,8 +8,13 @@
 #include <utility>
 #include <sstream>
 
-
-using namespace std;
+using std::string;
+using std::list;
+using std::ifstream;
+using std::stringstream;
+using std::exception;
+using std::invalid_argument;
+using std::out_of_range;
 
 //Singleton variables
 bool Config::s_initialised = false;
@@ -95,8 +100,8 @@ void Config::read(const string& path)
     m_zodiacBlocks.clear();
 
     list<string> lines;
-    unordered_map<string, string> block;
-    list<pair<string, string> > zodiacBlock;
+    std::unordered_map<string, string> block;
+    list<std::pair<string, string> > zodiacBlock;
 
     BlockType currentBlockType = none;
 

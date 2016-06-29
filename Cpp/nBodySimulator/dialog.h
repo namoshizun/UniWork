@@ -8,7 +8,7 @@
 #include "universecomposite.h"
 #include "visitor.h"
 #include "adjustvisitor.h"
-#include "censusvisitor.h"
+#include "inspectvisitor.h"
 #include "memento.h"
 
 #include <list>
@@ -19,8 +19,7 @@
 #include <QWheelEvent>
 #include <QMessageBox>
 
-enum ACTION { SET_CENTER, TRACK_PLANET, ZOOM_IN, ZOOM_OUT,
-              ACCELERATE, DECELERATE, ADJUST, INVALID};
+enum UNDOABLE_ACTION { SET_CENTER, TRACK_PLANET, ADJUST, INVALID};
 
 namespace Ui {
 class Dialog;
@@ -37,7 +36,6 @@ public:
         : QDialog(parent){}
 };
 
-class SimuldddddddddationState;
 class Dialog : public QDialog
 {
     Q_OBJECT
@@ -81,9 +79,10 @@ private:
 
     // show warn message
     void warn(const std::string&);
-    ACTION getAction(const std::string&);
+    UNDOABLE_ACTION getAction(const std::string&);
 
 private:
+
     Ui::Dialog* ui;
     Ui::PlanetInfo* ui_planetInfo;
     long m_timestamp; //simulation time since simulation start
@@ -94,7 +93,7 @@ private:
     bool m_paused; //is the simulation paused?
     bool m_renderZodiacs; //should Zodiacs be rendered?
     bool m_renderLabels; //should labels be rendered?
-    bool m_readyToLocate;
+    bool m_readyToRecenter;
     bool m_readyToAccel;
     bool m_adjusting;
     bool m_lockingPlanet;

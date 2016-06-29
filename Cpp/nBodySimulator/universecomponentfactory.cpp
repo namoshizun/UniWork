@@ -1,7 +1,9 @@
 #include "universecomponentfactory.h"
 #include <QDebug>
 
-using namespace std;
+using std::string;
+using std::invalid_argument;
+using std::out_of_range;
 
 UniverseComponentFactory::UniverseComponentFactory()
 {
@@ -25,7 +27,7 @@ UniverseComponentType UniverseComponentFactory::stringToUniverseComponentType(
 }
 
 UniverseComponent* UniverseComponentFactory::createUniverseComponent(
-        const unordered_map<string, string>& block) const
+        const std::unordered_map<string, string>& block) const
 {
     string name;
     try {
@@ -62,7 +64,7 @@ QColor UniverseComponentFactory::parseColor(const string& value) const
 }
 
 double UniverseComponentFactory::getDouble(
-        const unordered_map<string, string>& block,
+        const std::unordered_map<string, string>& block,
         const string& key,
         const string& name,
         bool required) const
@@ -86,7 +88,7 @@ double UniverseComponentFactory::getDouble(
 }
 
 UniverseComponent* UniverseComponentFactory::createLeaf(
-        const unordered_map<string, string>& block,
+        const std::unordered_map<string, string>& block,
         const string& name,
         const string& parentName,
         UniverseComponentType type) const
@@ -118,7 +120,7 @@ UniverseComponent* UniverseComponentFactory::createLeaf(
 
 
 UniverseComponent* UniverseComponentFactory::createComposite(
-        const unordered_map<string, string>& block,
+        const std::unordered_map<string, string>& block,
         const string& name,
         const string& parentName,
         UniverseComponentType type) const
