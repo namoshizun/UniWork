@@ -1,0 +1,514 @@
+//INSTRUCTIONS:
+//Separate key = value pairs with spaces!
+//Don't use spaces for anything else (use _ instead)
+//
+//Positions/Velocities are RELATIVE
+//i.e.
+//positions of planets are relative to the to the parent solarsystem
+//positions of solarsystems are relative to the parent galaxy
+//etc.
+//This makes it very easy to create a lot of systems
+
+
+[settings]
+//how many times should the screen update each second
+FRAMES_PER_SECOND = 60
+//how many seconds should be simulated each time the screen is redrawn
+PHYSICS_STEP_SIZE = 40320 // 1 lunar month per 60 frames
+//split each physics step into this many sub-steps
+OVERCALCULATE_PHYSICS = 10
+//meters per pixel, between bodies
+DISTANCE_SCALE = 1.0e10
+//meters per pixel, for body radius
+RADIUS_SCALE = 1.0e7
+//use a log2 scale for object radius, instead of RADIUS_SCALE?
+USE_LOG_RADIUS = 0
+//if using log2 scale, what radius in m is ~1 pixel?
+LOG_POINT = 1.0e6
+
+
+[zodiac]
+Alpha_Centauri_A = Alpha_Centauri_B
+Alpha_Centauri_A = Proxima_Centauri
+Alpha_Centauri_B = Proxima_Centauri
+
+[zodiac]
+Sun = Sun_B
+Sun = Sun_C
+Earth = Sun
+Earth_B = Sun_B
+Earth_C = Sun_C
+
+[blackhole]
+name = EaterOfWorlds
+position_x = 3.0e12
+position_y = 3.0e12
+velocity_x = 0.0
+velocity_y = 0.0
+radius = 1.0e8
+mass = 1.0e32
+color = #440044
+parent      =  Milky_Way
+
+[cluster]
+name = Cluster_A
+
+[cluster]
+name = Cluster_B
+parent = Cluster_A
+
+[galaxy]
+name = Milky_Way
+position_x  =  0
+position_y  =  0
+velocity_x  =  0
+velocity_y  =  0
+parent = Cluster_A
+
+[galaxy]
+name = Milky_Way_B
+position_x  =  0
+position_y  =  0
+velocity_x  =  0
+velocity_y  =  0
+parent = Cluster_A
+
+[solarsystem]
+name = Sol
+position_x  =  0
+position_y  =  0
+velocity_x  =  0
+velocity_y  =  0
+parent = Milky_Way
+
+[solarsystem]
+name = Sol_B
+position_x  =  1.0e12
+position_y  =  0
+velocity_x  =  0
+velocity_y  =  1.0e4
+parent = Milky_Way_B
+
+[solarsystem]
+name = Sol_C
+position_x  =  -1.0e12
+position_y  =  -2.0e12
+velocity_x  =  0
+velocity_y  =  3.0e4
+parent = Milky_Way_B
+
+
+[star]
+name = Sun
+position_x = 0
+position_y = 0
+velocity_x = 0
+velocity_y = 0
+radius = 696e6
+mass = 1.909e30
+color = #FFFF00
+parent      =  Sol
+
+[planet]
+name        =  Mercury
+position_x  =  46.0e9
+position_y  =  0
+velocity_x  =  0
+velocity_y  =  58.98e3
+radius      =  2.44e6
+mass        =  0.330e24
+color       =  #808080   //grey
+parent      =  Sol
+
+[planet]
+name        = Venus
+position_x  = 107.5e9
+position_y  = 0
+velocity_x  = 0
+velocity_y  = 35.26e3
+radius      = 6.052e6
+mass        = 4.87e24
+color       = #FFFF40    //yellow-white
+parent      =  Sol
+
+[planet]
+name = Earth
+position_x = 147.09e9
+position_y = 0
+velocity_x = 0
+velocity_y = 30.29e3
+radius = 6.378e6
+mass = 5.972e24
+color = #0040FF //blue-green
+parent = Sol
+
+[planet]
+name = Moon
+position_x = 147.473e9
+position_y = 0
+velocity_x = 0
+velocity_y = 31.366e3
+radius = 1.738e6
+mass = 0.073e24
+color = #808080 //grey
+parent      =  Sol
+
+[planet]
+name = Mars
+position_x = 206.62e9
+position_y = 0
+velocity_x = 0
+velocity_y = 26.50e3
+radius = 1.962e6
+mass = 0.64171e24
+color = #FF4020 //red-brown
+parent      =  Sol
+
+[planet]
+name = Jupiter
+position_x = 740.5e9
+position_y = 0
+velocity_x = 0
+velocity_y = 13.72e3
+radius = 71.492e6
+mass = 1898e24
+color = #A04040 //mix, browns, reds, blues, whites
+parent      =  Sol
+
+[planet]
+name = Saturn
+position_x = 1352.6e9
+position_y = 0
+velocity_x = 0
+velocity_y = 10.18e3
+radius = 60.268e6
+mass = 568e24
+color = #806040 //mix
+parent      =  Sol
+
+[planet]
+name = Uranus
+position_x = 2741.3e9
+position_y = 0
+velocity_x = 0
+velocity_y = 7.11e3
+radius = 25.559e6
+mass = 86.8e24
+color = #4080FF //light blue-green
+parent      =  Sol
+
+[planet]
+name = Neptune
+position_x = 4444.5e9
+position_y = 0
+velocity_x = 0
+velocity_y = 5.5e3
+radius = 24.764e6
+mass = 102e24
+color = #2060FF //blue-green
+parent      =  Sol
+
+[planet]
+name = Pluto
+position_x = 4436.8e9
+position_y = 0
+velocity_x = 0
+velocity_y = 6.1e3
+radius = 1.185e6
+mass = 0.0146e24
+color = #FF6600 //dark orange
+parent      =  Sol
+
+
+
+[solarsystem]
+name = Alpha_Centauri
+position_x  =  3.0e4
+position_y  =  3.0e16
+velocity_x  =  0
+velocity_y  =  0
+parent = Milky_Way
+
+[star]
+name = Alpha_Centauri_A
+position_x = 0
+position_y = 0
+velocity_x = 0
+velocity_y = 0
+radius = 854e6
+mass = 2.1e30
+color = #FFFF22
+parent      =  Alpha_Centauri
+
+[star]
+name = Alpha_Centauri_B
+position_x = 1.6e12
+position_y = 0
+velocity_x = 0
+velocity_y = 7.0e4
+radius = 696e6
+mass = 1.909e30
+color = #FFFF00
+parent      =  Alpha_Centauri
+
+[star]
+name = Proxima_Centauri
+position_x = 0
+position_y = 2.0e15
+velocity_x = 0
+velocity_y = 0
+radius = 1.0e8
+mass = 2.1e29
+color = #AA0000
+parent      =  Alpha_Centauri
+
+
+
+
+
+[star]
+name = Sun_B
+position_x = 0
+position_y = 0
+velocity_x = 0
+velocity_y = 0
+radius = 696e6
+mass = 1.909e30
+color = #FFFF00
+parent      =  Sol_B
+
+[planet]
+name        =  Mercury_B
+position_x  =  46.0e9
+position_y  =  0
+velocity_x  =  0
+velocity_y  =  58.98e3
+radius      =  2.44e6
+mass        =  0.330e24
+color       =  #808080   //grey
+parent      =  Sol_B
+
+[planet]
+name        = Venus_B
+position_x  = 107.5e9
+position_y  = 0
+velocity_x  = 0
+velocity_y  = 35.26e3
+radius      = 6.052e6
+mass        = 4.87e24
+color       = #FFFF40    //yellow-white
+parent      =  Sol_B
+
+[planet]
+name = Earth_B
+position_x = 147.09e9
+position_y = 0
+velocity_x = 0
+velocity_y = 30.29e3
+radius = 6.378e6
+mass = 5.972e24
+color = #0040FF //blue-green
+parent = Sol_B
+
+[planet]
+name = Moon_B
+position_x = 147.473e9
+position_y = 0
+velocity_x = 0
+velocity_y = 31.366e3
+radius = 1.738e6
+mass = 0.073e24
+color = #808080 //grey
+parent      =  Sol_B
+
+[planet]
+name = Mars_B
+position_x = 206.62e9
+position_y = 0
+velocity_x = 0
+velocity_y = 26.50e3
+radius = 1.962e6
+mass = 0.64171e24
+color = #FF4020 //red-brown
+parent      =  Sol_B
+
+[planet]
+name = Jupiter_B
+position_x = 740.5e9
+position_y = 0
+velocity_x = 0
+velocity_y = 13.72e3
+radius = 71.492e6
+mass = 1898e24
+color = #A04040 //mix, browns, reds, blues, whites
+parent      =  Sol_B
+
+[planet]
+name = Saturn_B
+position_x = 1352.6e9
+position_y = 0
+velocity_x = 0
+velocity_y = 10.18e3
+radius = 60.268e6
+mass = 568e24
+color = #806040 //mix
+parent      =  Sol_B
+
+[planet]
+name = Uranus_B
+position_x = 2741.3e9
+position_y = 0
+velocity_x = 0
+velocity_y = 7.11e3
+radius = 25.559e6
+mass = 86.8e24
+color = #4080FF //light blue-green
+parent      =  Sol_B
+
+[planet]
+name = Neptune_B
+position_x = 4444.5e9
+position_y = 0
+velocity_x = 0
+velocity_y = 5.5e3
+radius = 24.764e6
+mass = 102e24
+color = #2060FF //blue-green
+parent      =  Sol_B
+
+[planet]
+name = Pluto_B
+position_x = 4436.8e9
+position_y = 0
+velocity_x = 0
+velocity_y = 6.1e3
+radius = 1.185e6
+mass = 0.0146e24
+color = #FF6600 //dark orange
+parent      =  Sol_B
+
+
+
+
+
+[star]
+name = Sun_C
+position_x = 0
+position_y = 0
+velocity_x = 0
+velocity_y = 0
+radius = 696e6
+mass = 1.909e30
+color = #FFFF00
+parent      =  Sol_C
+
+[planet]
+name        =  Mercury_C
+position_x  =  -46.0e9
+position_y  =  0
+velocity_x  =  0
+velocity_y  =  58.98e3
+radius      =  2.44e6
+mass        =  0.330e24
+color       =  #808080   //grey
+parent      =  Sol_C
+
+[planet]
+name        = Venus_C
+position_x  = -107.5e9
+position_y  = 0
+velocity_x  = 0
+velocity_y  = 35.26e3
+radius      = 6.052e6
+mass        = 4.87e24
+color       = #FFFF40    //yellow-white
+parent      =  Sol_C
+
+[planet]
+name = Earth_C
+position_x = -147.09e9
+position_y = 0
+velocity_x = 0
+velocity_y = 30.29e3
+radius = 6.378e6
+mass = 5.972e24
+color = #0040FF //blue-green
+parent = Sol_C
+
+[planet]
+name = Moon_C
+position_x = -147.473e9
+position_y = 0
+velocity_x = 0
+velocity_y = 31.366e3
+radius = 1.738e6
+mass = 0.073e24
+color = #808080 //grey
+parent      =  Sol_C
+
+[planet]
+name = Mars_C
+position_x = -206.62e9
+position_y = 0
+velocity_x = 0
+velocity_y = 26.50e3
+radius = 1.962e6
+mass = 0.64171e24
+color = #FF4020 //red-brown
+parent      =  Sol_C
+
+[planet]
+name = Jupiter_C
+position_x = -740.5e9
+position_y = 0
+velocity_x = 0
+velocity_y = 13.72e3
+radius = 71.492e6
+mass = 1898e24
+color = #A04040 //mix, browns, reds, blues, whites
+parent      =  Sol_C
+
+[planet]
+name = Saturn_C
+position_x = -1352.6e9
+position_y = 0
+velocity_x = 0
+velocity_y = 10.18e3
+radius = 60.268e6
+mass = 568e24
+color = #806040 //mix
+parent      =  Sol_C
+
+[planet]
+name = Uranus_C
+position_x = -2741.3e9
+position_y = 0
+velocity_x = 0
+velocity_y = 7.11e3
+radius = 25.559e6
+mass = 86.8e24
+color = #4080FF //light blue-green
+parent      =  Sol_C
+
+[planet]
+name = Neptune_C
+position_x = -4444.5e9
+position_y = 0
+velocity_x = 0
+velocity_y = 5.5e3
+radius = 24.764e6
+mass = 102e24
+color = #2060FF //blue-green
+parent      =  Sol_C
+
+[planet]
+name = Pluto_C
+position_x = -4436.8e9
+position_y = 0
+velocity_x = 0
+velocity_y = 6.1e3
+radius = 1.185e6
+mass = 0.0146e24
+color = #FF6600 //dark orange
+parent      =  Sol_C
+
