@@ -3,38 +3,24 @@
 #include "universecomponent.h"
 #include "dialog.h"
 
-
-
-
 class State
 {
 public:
-    State() {}
-    virtual ~State() {}
-    // TODO: override ostream operator
-};
-
-class ViewState : public State
-{
-public:
-    ViewState():
-        State()
-      , m_width(1200)
-      , m_height(800)
+    State()
     {}
 
-    ViewState(ViewState& s)
-    {
+    State(State& s)
+    {   // deep copy the passed state
         m_width = s.m_width;
         m_height = s.m_height;
-        m_distanceScaleVariance = s.m_distanceScaleVariance;
-        m_radiusScaleVariance = s.m_radiusScaleVariance;
-        m_logPointVariance = s.m_logPointVariance;
-        m_stepSizeVariance = s.m_stepSizeVariance;
+        m_stepSizeChange = s.m_stepSizeChange;
+        m_distanceScaleChange = s.m_distanceScaleChange;
+        m_radiusScaleChange = s.m_radiusScaleChange;
+        m_logPointRadiusChange = s.m_logPointRadiusChange;
         m_center = s.m_center;
         offsetX = s.offsetX;
         offsetY = s.offsetY;
-        m_p = s.m_p;
+        m_pLocked = s.m_pLocked;
     }
 
 private:
@@ -42,17 +28,17 @@ private:
     // windows size
     int m_width;
     int m_height;
-    // scale variances
-    double m_distanceScaleVariance;
-    double m_radiusScaleVariance;
-    double m_logPointVariance;
-    double m_stepSizeVariance;
+    // rendering option changes
+    double m_stepSizeChange;
+    double m_distanceScaleChange;
+    double m_radiusScaleChange;
+    double m_logPointRadiusChange;
     // center of view
     QPoint m_center;
     double offsetX;
     double offsetY;
     // locked planet
-    UniverseBody* m_p;
+    UniverseBody* m_pLocked;
 };
 
 #endif // DIALOGSTATE_H

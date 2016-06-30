@@ -14,35 +14,38 @@ Dialog::Dialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Dialog)
     , ui_planetInfo(new Ui::PlanetInfo)
+    , m_timestamp(0)
     , m_paused(false)
     , m_renderZodiacs(true)
     , m_renderLabels(true)
-    , m_adjusting(false)
-    , m_timestamp(0)
-    , m_config(Config::getInstance())
-    , m_readyToAccel(false)
     , m_readyToRecenter(false)
+    , m_readyToAccel(false)
+    , m_adjusting(false)
     , m_lockingPlanet(false)
+    , m_width(1200)
+    , m_height(800)
+    , m_pLocked(nullptr)
+    , m_config(Config::getInstance())
 {
     m_config->read("config.txt");
     m_universe = m_config->parseUniverseBlocks();
     m_zodiacs = m_config->parseZodiacBlocks();
     m_universe->convertRelativeToAbsolute(QVector2D(0, 0),QVector2D(0, 0));
 
-    // controllable at runtime
-    s.m_distanceScaleVariance = m_config->getDistanceScale() * 0.1;
-    s.m_radiusScaleVariance = m_config->getRadiusScale() * 0.1;
-    s.m_logPointVariance = m_config->getLogPointRadius() * 0.1;
-    s.m_stepSizeVariance = m_config->getPhysicsStepSize() * 0.15;
-    s.offsetX = s.m_width / 2;
-    s.offsetY = s.m_height / 2;
-    s.m_center.setX(s.offsetX);
-    s.m_center.setY(s.offsetY);
+    // simulation display configurations
+    m_distanceScaleVariance = m_config->getDistanceScale() * 0.1;
+    m_radiusScaleVariance = m_config->getRadiusScale() * 0.1;
+    m_logPointVariance = m_config->getLogPointRadius() * 0.1;
+    m_stepSizeVariance = m_config->getPhysicsStepSize() * 0.1;
+    offsetX = m_width / 2; // make the center be (0, 0)
+    offsetY = m_height / 2;
+    m_center.setX(offsetX);
+    m_center.setY(offsetY);
 
     // set backdrop to sky-blue and make the window appear
     ui->setupUi(this);
     this->setStyleSheet("background-color: #82CAFF;");
-    this->resize(s.m_width, s.m_height);
+    this->resize(m_width, m_height);
     this->update();
 
     //create and connect buttons
@@ -53,6 +56,7 @@ Dialog::Dialog(QWidget *parent)
     connect(ui->btn_replay, SIGNAL(released()), this, SLOT(replaySimulation()));
     connect(ui->btn_submitViewChange, SIGNAL(released()), this, SLOT(submitViewChange()));
     connect(ui->btn_undoChange, SIGNAL(released()), this, SLOT(undo()));
+    connect(ui->btn_2D3D, SIGNAL(released()), this, SLOT(toggle2D3D()));
 
     //setup timer
     m_timer = new QTimer(this);
@@ -73,6 +77,7 @@ Dialog::~Dialog()
         delete *it;
 }
 
+// toggle - begin
 void Dialog::toggleZodiacs()
 {
     m_renderZodiacs = !m_renderZodiacs;
@@ -93,6 +98,13 @@ void Dialog::toggleAutoAdjust()
     autoadjust(!m_adjusting);
 }
 
+void Dialog::toggle2D3D()
+{
+    // TODO
+}
+
+// toggle - finish
+
 void Dialog::submitViewChange()
 {
 
@@ -107,8 +119,8 @@ void Dialog::submitViewChange()
     } else {
         // save a snapshot
         addToHistory("SET_CENTER");
-        s.offsetX += s.m_width/2 - x.toInt();
-        s.offsetY += s.m_height/2 - y.toInt();
+        offsetX += m_width/2 - x.toInt();
+        offsetY += m_height/2 - y.toInt();
     }
 }
 
@@ -118,11 +130,14 @@ void Dialog::replaySimulation()
 
 void Dialog::undo()
 {
-
     if (!history.empty()){
-        Memento* m = history.back();
-        restoreFromMemento(m);
-        history.pop_back();
+        if (m_adjusting)
+            warn("Please disable auto-adjusting before undo");
+        else {
+            Memento* m = history.back();
+            restoreFromMemento(m);
+            history.pop_back();
+        }
     } else {
         warn("No saved snapshots");
     }
@@ -132,6 +147,7 @@ void Dialog::undo()
 void Dialog::autoadjust(bool _auto)
 {
     if (_auto) {
+        addToHistory("ADJUST");
         m_timerAdjust->start(30); // adjust view every 30ms
         m_adjusting = true;
         ui->btn_adjust->setText(QString::fromStdString("Adjusting"));
@@ -159,16 +175,16 @@ void Dialog::pause(bool pause)
 void Dialog::lockBody(UniverseBody * p)
 {
     addToHistory("TRACK_PLANET");
-    s.m_p = p;
+    m_pLocked = p;
     m_lockingPlanet = true;
     ui->l_pLocked->setText(QString::fromStdString(p->getName()));
 }
 
 void Dialog::unlockBody(UniverseBody *p)
 {
-    if (s.m_p != nullptr){
-        if (s.m_p == p) {
-            s.m_p = nullptr;
+    if (m_pLocked != nullptr){
+        if (m_pLocked == p) {
+            m_pLocked = nullptr;
             m_lockingPlanet = false;
             ui->l_pLocked->setText(QString::fromStdString("NONE"));
         }
@@ -215,14 +231,14 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
 
     if (m_readyToRecenter) {
         addToHistory("SET_CENTER");
-        s.m_center.setX(event->pos().x());
-        s.m_center.setY(event->pos().y());
-        s.offsetX += s.m_width/2 - s.m_center.x();
-        s.offsetY += s.m_height/2 - s.m_center.y();
+        m_center.setX(event->pos().x());
+        m_center.setY(event->pos().y());
+        offsetX += m_width/2 - m_center.x();
+        offsetY += m_height/2 - m_center.y();
     }
     else {
         // inspect planet information
-        Visitor* visitor = new InspectVisitor(event->pos().x() - s.offsetX, event->pos().y() - s.offsetY);
+        Visitor* visitor = new InspectVisitor(event->pos().x() - offsetX, event->pos().y() - offsetY);
         m_universe->accept(visitor);// try to find a planet that is considered to be clicked on
         UniverseBody* p = dynamic_cast<InspectVisitor*>(visitor)->getTarget();
 
@@ -254,27 +270,28 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
 void Dialog::wheelEvent(QWheelEvent *event)
 {
     QPoint degree = event->angleDelta() / 8;
-    int sign = degree.y() > 0 ? 1 : -1; // 1 = forward, -1 = backward
+    int sign = degree.y() > 0 ? -1 : 1; // -1 = forward, 1 = backward
+
     if (m_readyToAccel) {
-        m_config->setStepSizeChange(sign * s.m_stepSizeVariance);
+        m_config->setStepSizeChange(-sign * m_stepSizeVariance);
     } else {
-        m_config->setDistanceScaleChange(sign * s.m_distanceScaleVariance);
-        m_config->setRadiusScaleChange(sign * s.m_radiusScaleVariance);
-        m_config->setLogPointRadiusChange(sign * s.m_logPointVariance);
+        m_config->setDistanceScaleChange(sign * m_distanceScaleVariance);
+        m_config->setRadiusScaleChange(sign * m_radiusScaleVariance);
+        m_config->setLogPointRadiusChange(sign * m_logPointVariance);
     }
 }
 /********** Timed Events **********/
 void Dialog::adjustView()
 {
-    // form collects: <xsum, ysum, counter, min_x, min_y, max_x, max_y> (all are absolute)
+    // form collects: <xsum, ysum, counter, min_x, min_y, max_x, max_y> (all are absolute values)
     Visitor* visitor = new AdjustVisitor();
     m_universe->accept(visitor);
     const Form& form = dynamic_cast<AdjustVisitor*>(visitor)->getForm();
 
     double w = std::abs(form.max_x - form.min_x);
     double h = std::abs(form.max_y - form.min_y);
-    double ws = w / (s.m_width - margin*2); // proper width scale
-    double hs = h / (s.m_height - margin*2); // proper height scale
+    double ws = w / (m_width - margin*2); // proper width scale
+    double hs = h / (m_height - margin*2); // proper height scale
     double scale = std::max(ws, hs); // the max distance scale is selected as new scale.
 
     // get the proportion of distance scale change and tune the scales of others
@@ -283,12 +300,8 @@ void Dialog::adjustView()
     m_config->m_radiusScaleChange = m_config->getBaseRadiusScale() * p;
     m_config->m_logPointRadiusChange = m_config->getBaseLogPointRadius() * p;
 
-    // get the new center <- useless though...
-    double xavg = (form.xsum / form.population) / scale;
-    double yavg = (form.ysum / form.population) / scale;
-
-    s.offsetX = -form.min_x / scale + margin;
-    s.offsetY = -form.min_y / scale + margin;
+    offsetX = -form.min_x / scale + margin;
+    offsetY = -form.min_y / scale + margin;
 
     delete visitor;
 }
@@ -325,11 +338,11 @@ void Dialog::paintEvent(QPaintEvent *event)
 
     //offset the painter, save coordinate system beforehand
     painter.save();
-    painter.translate(s.offsetX, s.offsetY);
-    int w = s.m_width;
-    int h = s.m_height;
-    double ox = s.offsetX;
-    double oy = s.offsetY;
+    painter.translate(offsetX, offsetY);
+    int w = m_width;
+    int h = m_height;
+    double ox = offsetX;
+    double oy = offsetY;
 
     if (m_renderZodiacs) { // zodiacs?
         for(auto zodiac : *m_zodiacs)
@@ -337,21 +350,21 @@ void Dialog::paintEvent(QPaintEvent *event)
     }
     if (m_renderLabels)  // labels?
         m_universe->renderLabel(painter);
-    if (m_lockingPlanet) { // lock the center of view on a planet?
-        s.offsetX += w/2 - (s.m_p->getPositionX() / m_config->getDistanceScale() + ox);
-        s.offsetY += h/2 - (s.m_p->getPositionY() / m_config->getDistanceScale() + oy);
+    if (m_lockingPlanet) { // locking on a planet?
+        offsetX += w/2 - (m_pLocked->getPositionX() / m_config->getDistanceScale() + ox);
+        offsetY += h/2 - (m_pLocked->getPositionY() / m_config->getDistanceScale() + oy);
     }
 
     m_universe->render(painter);
     painter.restore();
 
-    // draw the center cross
-    painter.setPen(Qt::red);
+    // draw the center cross?
     if (m_readyToRecenter){
+        painter.setPen(Qt::red);
         painter.drawLine(0, h/2, w, h/2);
         painter.drawLine(w/2, 0, w/2, h);
     }
-    // refresh label for x_offet and y_offset
+    // update x_offet and y_offset labels
     ui->l_xoffset->setText(QString::number(ox));
     ui->l_yoffset->setText(QString::number(oy));
 }
@@ -365,30 +378,33 @@ void Dialog::addToHistory(const std::string &action)
 
 Memento* Dialog::createMemento(const std::string& action)
 {
-
-    return new Memento(s, action);
+    State* s = new State();
+    packState(s);
+    return new Memento(*s, action);
 }
 
 void Dialog::restoreFromMemento(const Memento *m)
 {
-    const ViewState& state = m->getState();
+    const State& state = m->getState();
     switch (getAction(m->action)) {
     case SET_CENTER :
-        s.offsetX = state.offsetX;
-        s.offsetY = state.offsetY;
+        offsetX = state.offsetX;
+        offsetY = state.offsetY;
         break;
     case TRACK_PLANET:
-        unlockBody(s.m_p);
-        s.offsetX = state.offsetX;
-        s.offsetY = state.offsetY;
-        s.m_p = state.m_p;
+        unlockBody(m_pLocked);
+        offsetX = state.offsetX;
+        offsetY = state.offsetY;
+        m_pLocked = state.m_pLocked;
         break;
     case ADJUST:
-        s.offsetX = state.offsetX;
-        s.offsetY = state.offsetY;
-        s.m_distanceScaleVariance = state.m_distanceScaleVariance;
-        s.m_logPointVariance = state.m_logPointVariance;
-        s.m_radiusScaleVariance = state.m_radiusScaleVariance;
+        offsetX = state.offsetX;
+        offsetY = state.offsetY;
+        m_config->m_stepSizeChange = state.m_stepSizeChange;
+        m_config->m_distanceScaleChange = state.m_distanceScaleChange;
+        m_config->m_radiusScaleChange = state.m_radiusScaleChange;
+        m_config->m_logPointRadiusChange = state.m_logPointRadiusChange;
+
         break;
     default:
         break;
@@ -397,6 +413,20 @@ void Dialog::restoreFromMemento(const Memento *m)
 }
 
 /********** Helper Methods **********/
+void Dialog::packState(State *s)
+{
+    s->m_width = m_width;
+    s->m_height = m_height;
+    s->m_center = m_center;
+    s->offsetX = offsetX;
+    s->offsetY = offsetY;
+    s->m_stepSizeChange = m_config->m_stepSizeChange;
+    s->m_distanceScaleChange = m_config->m_distanceScaleChange;
+    s->m_radiusScaleChange = m_config->m_radiusScaleChange;
+    s->m_logPointRadiusChange = m_config->m_logPointRadiusChange;
+    s->m_pLocked = m_pLocked;
+}
+
 void Dialog::warn(const std::string& text)
 {
     QMessageBox msgBox;

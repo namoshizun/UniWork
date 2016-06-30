@@ -14,54 +14,15 @@
    <enum>Qt::NoFocus</enum>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>N BODY SIMULATION</string>
   </property>
-  <widget class="QPushButton" name="btn_pause">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>460</y>
-     <width>91</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Pause</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btn_zodiac">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>490</y>
-     <width>91</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Zodiac</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btn_label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>520</y>
-     <width>91</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Label</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>190</y>
+     <y>180</y>
      <width>90</width>
-     <height>171</height>
+     <height>181</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -108,19 +69,6 @@
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QPushButton" name="btn_adjust">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>550</y>
-     <width>91</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Adjust</string>
-   </property>
   </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
@@ -258,19 +206,6 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_undoChange">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>430</y>
-     <width>90</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>UNDO</string>
-   </property>
-  </widget>
   <widget class="QComboBox" name="comboBox_history">
    <property name="geometry">
     <rect>
@@ -293,6 +228,60 @@
    <property name="text">
     <string>HISTORY</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>440</y>
+     <width>84</width>
+     <height>202</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QPushButton" name="btn_pause">
+      <property name="text">
+       <string>Pause</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_undoChange">
+      <property name="text">
+       <string>UNDO</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_label">
+      <property name="text">
+       <string>Label</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_zodiac">
+      <property name="text">
+       <string>Zodiac</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_adjust">
+      <property name="text">
+       <string>Adjust</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_2D3D">
+      <property name="text">
+       <string>3D</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

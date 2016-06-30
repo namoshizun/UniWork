@@ -24,7 +24,7 @@ Config* Config::s_instance = nullptr;
 //a type to make it easier to keep track of what the parser is doing
 enum BlockType { none, settings, component, zodiac };
 
-Config::Config() // Initialize to default values first, but can be updated to info given in config later
+Config::Config() // Initialize to default values
     : m_framesPerSecond(60)
     , m_physicsStepSize(40320)
     , m_overcalculatePhysics(1)

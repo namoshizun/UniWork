@@ -36,6 +36,7 @@ public:
         : QDialog(parent){}
 };
 
+// Main Diaog window
 class Dialog : public QDialog
 {
     Q_OBJECT
@@ -49,6 +50,7 @@ private slots:
     void toggleZodiacs();
     void toggleLabels();
     void toggleAutoAdjust();
+    void toggle2D3D();
 
     void nextFrame();
     void undo();
@@ -77,12 +79,12 @@ private:
     Memento* createMemento(const std::string& action);
     void restoreFromMemento(const Memento* m);
 
-    // show warn message
+    // Helper methods
+    void packState(State* s);
     void warn(const std::string&);
     UNDOABLE_ACTION getAction(const std::string&);
 
 private:
-
     Ui::Dialog* ui;
     Ui::PlanetInfo* ui_planetInfo;
     long m_timestamp; //simulation time since simulation start
@@ -97,13 +99,29 @@ private:
     bool m_readyToAccel;
     bool m_adjusting;
     bool m_lockingPlanet;
+    bool m_render3D;
 
-    // used for auto-adjust center
+    // window size
     int margin = 100;
+    int m_width;
+    int m_height;
 
-    ViewState s; // A LOT OF THIGS!
-    std::list<Zodiac>* m_zodiacs; //Vector of zodiac lines
-    UniverseComponent* m_universe; //a composite of systems...
+    // center of view
+    QPoint m_center;
+    double offsetX;
+    double offsetY;
+
+    // scale variances
+    double m_distanceScaleVariance;
+    double m_radiusScaleVariance;
+    double m_logPointVariance;
+    double m_stepSizeVariance;
+
+    // planet being locked on
+    UniverseBody* m_pLocked;
+
+    std::list<Zodiac>* m_zodiacs;
+    UniverseComponent* m_universe;
     Config* m_config; //the singleton config instance
 };
 #endif // DIALOG_H

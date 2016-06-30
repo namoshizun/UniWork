@@ -24,9 +24,6 @@ public:
         : m_type(type), m_name(name), m_parentName(parentName) { }
     virtual ~UniverseComponent() { }
 
-    /*********************************************
-     * Methods newly added
-     * *******************************************/
     virtual void accept (Visitor* visitor) = 0;
 
     //composite operation: render the subtree

@@ -6,7 +6,7 @@
 class Memento
 {
 public:
-    Memento(ViewState toSave,
+    Memento(State toSave,
             std::string action)  :
         state(toSave) // deep copy the given state
       , action(action)
@@ -18,10 +18,10 @@ private:
     friend class Dialog;
 
     Memento();
-    const ViewState& getState() const { return state; }
+    const State& getState() const { return state; }
 
 private:
-    ViewState state;
+    State state;
     std::string action;
 };
 
