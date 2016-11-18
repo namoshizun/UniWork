@@ -28,8 +28,8 @@ def audit(path, extension, depth):
 	else:
 
 		os.chdir(path)
-		all_ = os.listdir()
-		files  = [name for name in all_ if name.endswith(extension)]
+		all_    = os.listdir()
+		files   = [name for name in all_ if name.endswith(extension)]
 		folders = [name for name in all_ if os.path.isdir(os.path.join(path, name))]
 
 		lst = list()
@@ -55,10 +55,13 @@ if __name__ == "__main__":
 			parts = line.split()
 
 			if len(parts) == 2:
-				countLines(parts[0], parts[1])
+				# path, extension
+				countLines(parts[0], '.' + parts[1])
 			else:
 				print('must give a path and a filename extension')
-
+		except KeyboardInterrupt:
+			print('Abort. Send EOF to terminate')
+			continue
 		except EOFError:
 			print('bye')
 			break;
